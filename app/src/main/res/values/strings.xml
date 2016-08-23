@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Workout Log</string>
+    <string name="t_date"><u>Workout Log For: </u></string>
+    <string name="b_add_exercise">add new exercise</string>
+    <string name="weight_hint"><i>lb</i></string>
+    <string name="b_remove_exercise">remove exercise</string>
+    <string name="b_update_exercise">update</string>
+    <string name="b_add_set">add set</string>
+</resources>
