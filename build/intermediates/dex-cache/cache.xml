@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\Workout-Log\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.4.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
+        <dex dex="C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\Workout-Log\app\build\intermediates\pre-dexed\release\com.android.support-support-vector-drawable-23.4.0_9b9b931e73b0187e8637e9b9915df6e64d261996.jar" />
+    </item>
+    <item
+        jar="C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\Workout-Log\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.4.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
+        <dex dex="C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\Workout-Log\app\build\intermediates\pre-dexed\release\com.android.support-animated-vector-drawable-23.4.0_ec1290232e02921d8cb9b4fb9078f1c7ec472640.jar" />
+    </item>
+    <item
+        jar="C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\Workout-Log\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.4.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
+        <dex dex="C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\Workout-Log\app\build\intermediates\pre-dexed\release\com.android.support-appcompat-v7-23.4.0_dde6f1f8dfedbf08f27661f73ed0d65447b61aaf.jar" />
+    </item>
+    <item
+        jar="C:\Program Files\Android\Android Studio\gradle\m2repository\com\google\code\gson\gson\2.2.4\gson-2.2.4.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="a60a5e993c98c864010053cb901b7eab25306568">
+        <dex dex="C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\Workout-Log\app\build\intermediates\pre-dexed\release\gson-2.2.4_313aff129984a0a45e086871ec03bfcc02e7284e.jar" />
+    </item>
+    <item
+        jar="C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\Workout-Log\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
+        <dex dex="C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\Workout-Log\app\build\intermediates\pre-dexed\release\com.android.support-support-v4-23.4.0_f71975cd980af1998f5e44c60315e24123301e88.jar" />
+    </item>
+    <item
+        jar="C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\Workout-Log\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\libs\internal_impl-23.4.0.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
+        <dex dex="C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\Workout-Log\app\build\intermediates\pre-dexed\release\internal_impl-23.4.0_7fcb94ae3d4eac9bd893d58e733f17682e28888e.jar" />
+    </item>
+    <item
+        jar="C:\Users\nnsoo\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.4.0\support-annotations-23.4.0.jar"
+        jumboMode="false"
+        revision="23.0.3"
+        sha1="ffbe55fdb2bb456b1485831706a9eac3300bb6b8">
+        <dex dex="C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\Workout-Log\app\build\intermediates\pre-dexed\release\support-annotations-23.4.0_1aeb98846512278d225cacd83e5d91e1c70381c7.jar" />
+    </item>
+
+</items>
