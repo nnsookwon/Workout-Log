@@ -164,12 +164,12 @@
         "source": "C:\\Users\\nnsoo\\OneDrive\\Documents\\AndroidStudioProjects\\git\\WorkoutLog\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\layout\\notification_template_lines.xml"
     },
     {
-        "merged": "C:\\Users\\nnsoo\\OneDrive\\Documents\\AndroidStudioProjects\\git\\WorkoutLog\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_media.xml",
-        "source": "C:\\Users\\nnsoo\\OneDrive\\Documents\\AndroidStudioProjects\\git\\WorkoutLog\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\layout\\notification_template_media.xml"
-    },
-    {
         "merged": "C:\\Users\\nnsoo\\OneDrive\\Documents\\AndroidStudioProjects\\git\\WorkoutLog\\app\\build\\intermediates\\res\\merged\\debug\\layout\\log_entry_exercise_name_template.xml",
         "source": "C:\\Users\\nnsoo\\OneDrive\\Documents\\AndroidStudioProjects\\git\\WorkoutLog\\app\\src\\main\\res\\layout\\log_entry_exercise_name_template.xml"
+    },
+    {
+        "merged": "C:\\Users\\nnsoo\\OneDrive\\Documents\\AndroidStudioProjects\\git\\WorkoutLog\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_media.xml",
+        "source": "C:\\Users\\nnsoo\\OneDrive\\Documents\\AndroidStudioProjects\\git\\WorkoutLog\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\layout\\notification_template_media.xml"
     },
     {
         "merged": "C:\\Users\\nnsoo\\OneDrive\\Documents\\AndroidStudioProjects\\git\\WorkoutLog\\app\\build\\intermediates\\res\\merged\\debug\\layout\\log_entry_template.xml",

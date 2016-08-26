@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -24,6 +25,7 @@ import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Locale;
 
 /**
@@ -38,7 +40,7 @@ public class AddNewExercise extends AppCompatActivity implements AdapterView.OnI
     public ExerciseLog exerciseLog;
 
     private Spinner sp_exerciseOptions;
-    ArrayList<String> exercises = new ArrayList<String>();
+    ArrayList<String> exercises;
     SharedPreferences savedExercises;
     public static String filename = "SavedExercises";
     private static final String KEY_EXERCISES = "key_exercises";
@@ -51,15 +53,15 @@ public class AddNewExercise extends AppCompatActivity implements AdapterView.OnI
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_new_exercise);
 
-
         exerciseLog = new ExerciseLog(getApplicationContext());
+        exercises = new ArrayList<String>();
         savedExercises = getSharedPreferences(filename, Context.MODE_PRIVATE);
 
         if (savedExercises.contains(KEY_EXERCISES))
             loadExerciseList();
-        if (exercises.size() == 0)
+        if (exercises.size() == 0) {
             initExercises();
-
+        }
         et_date = (EditText) findViewById(R.id.et_date);
         et_weight = (EditText) findViewById(R.id.et_weight);
         et_reps = (EditText) findViewById(R.id.et_reps);
@@ -74,6 +76,7 @@ public class AddNewExercise extends AppCompatActivity implements AdapterView.OnI
     }
 
     public void loadExerciseList() {
+        //loads list of exercise options from SharedPreferences
         Gson gson = new Gson();
         String json = savedExercises.getString(KEY_EXERCISES, null);
         Type type = new TypeToken<ArrayList<String>>() {
@@ -81,7 +84,10 @@ public class AddNewExercise extends AppCompatActivity implements AdapterView.OnI
         exercises = gson.fromJson(json, type);
     }
 
-    public void saveExercistList() {
+    public void saveExerciseList() {
+        //sorts exercises alphabetically and then save into SharedPreferences
+        //retain ordering of first two, "" and "Other" options
+        Collections.sort(exercises.subList(2, exercises.size()));
         SharedPreferences.Editor editor = savedExercises.edit();
         Gson gson = new Gson();
 
@@ -92,6 +98,8 @@ public class AddNewExercise extends AppCompatActivity implements AdapterView.OnI
     }
 
     public void initExercises() {
+        //to be called if first time user
+
         exercises.add("");
         exercises.add("Other");
         exercises.add("Flat Bench Press");
@@ -100,8 +108,7 @@ public class AddNewExercise extends AppCompatActivity implements AdapterView.OnI
         exercises.add("DB Shoulder Press");
         exercises.add("Bicep Curls");
         exercises.add("DB Shrugs");
-
-
+        saveExerciseList();
     }
 
     public void onItemSelected(AdapterView<?> av, View v, int n, long l) {
@@ -109,8 +116,6 @@ public class AddNewExercise extends AppCompatActivity implements AdapterView.OnI
         if (pos == 1) {
             addOption();
         }
-        pos = sp_exerciseOptions.getSelectedItemPosition(); //in case "other" was selected
-
         nExerciseName = exercises.get(pos);
     }
 
@@ -128,29 +133,47 @@ public class AddNewExercise extends AppCompatActivity implements AdapterView.OnI
         builder.setTitle("Add New Exercise");
         builder.setMessage("Enter new exercise: ");
         final EditText input = new EditText(AddNewExercise.this);
+        input.setInputType(InputType.TYPE_TEXT_FLAG_CAP_WORDS);
         input.setSingleLine();
         builder.setView(input);
 
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface d, int whichButton) {
-                if (!input.getText().toString().isEmpty()) {
-                    exercises.add(input.getText().toString());
-                    sp_exerciseOptions.setSelection(exercises.size() - 1);
-                    saveExercistList();
+                String newExercise = input.getText().toString().trim().replaceAll("\\s+", " ");
+                //removes leading and trailing spaces, and multiple spaces in between
+
+                if (newExercise.length() > 0) {
+                    //input must be more than just spaces
+                    if (exercises.contains(newExercise)) {
+                        //prevents duplicate exercise options
+                        Toast.makeText(AddNewExercise.this, "Exercise already exists", Toast.LENGTH_SHORT).show();
+                    } else {
+                        exercises.add(newExercise);
+                        saveExerciseList();
+                    }
+                    sp_exerciseOptions.setSelection(exercises.indexOf(newExercise));
                 } else
                     sp_exerciseOptions.setSelection(0);
+                d.dismiss();
             }
         });
 
         builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface d, int whichButton) {
-                d.cancel();
+                sp_exerciseOptions.setSelection(0);
+                d.dismiss();
+            }
+        });
+
+        builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface d) {
+                sp_exerciseOptions.setSelection(0);
             }
         });
 
         AlertDialog dialog = builder.create();
         dialog.show();
-
     }
 
     public void initFields() {

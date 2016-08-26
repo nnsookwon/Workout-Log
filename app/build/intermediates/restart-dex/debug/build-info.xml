@@ -4,7 +4,7 @@
     api-level="23"
     density="420dpi"
     format="7"
-    timestamp="459585710500315"
+    timestamp="16194141427492"
     token="-4891606476800178743" >
 
     <task
@@ -20,21 +20,25 @@
         name="verifier"
         duration="0" />
 
-    <build timestamp="458508174087188" >
+    <build timestamp="8298897406712" >
         <artifact
             location="C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\outputs\apk\app-debug.apk"
             type="MAIN" />
     </build>
     <build
-        timestamp="459525663641183"
+        timestamp="13747103021731"
         verifier="METHOD_DELETED" >
-        <artifact
-            location="C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\intermediates\res\resources-debug.ap_"
-            type="RESOURCES" />
         <artifact
             location="C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_3\classes.dex"
             type="DEX" />
     </build>
-    <build timestamp="459585710500315" />
+    <build
+        timestamp="15950298335867"
+        verifier="COMPATIBLE" >
+        <artifact
+            location="C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\intermediates\builds\debug\15950298335867\classes.dex"
+            type="RELOAD_DEX" />
+    </build>
+    <build timestamp="16194141427492" />
 
 </instant-run>
