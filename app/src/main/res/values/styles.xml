@@ -27,13 +27,13 @@
         <item name="android:layout_marginTop">8dp</item>
         <item name="android:layout_marginBottom">8dp</item>
         <item name="android:padding">8dp</item>
-        <item name="android:orientation">vertical</item>
+        <item name="android:orientation">horizontal</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
 
     <style name="Log_Entry_Exercise">
-        <item name="android:textSize">32sp</item>
+        <item name="android:textSize">28sp</item>
         <item name="android:textColor">@android:color/black</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -41,11 +41,12 @@
 
 
     <style name="Log_Entry_Sets">
-        <item name="android:textSize">32sp</item>
+        <item name="android:textSize">24sp</item>
         <item name="android:textColor">@android:color/black</item>
         <item name="android:gravity">right</item>
-        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingTop">8dp</item>
     </style>
 
 
@@ -73,10 +74,8 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:onClick">goToAddToEntry</item>
         <item name="android:padding">12dp</item>
-        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:layout_marginBottom">16dp</item>
     </style>
-
-    B_Add_To_Entry
 
     <style name="Edit_Entry_Header">
         <item name="android:textSize">32sp</item>

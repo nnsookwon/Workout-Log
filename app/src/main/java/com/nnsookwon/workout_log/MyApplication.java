@@ -4,13 +4,12 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.view.ContextThemeWrapper;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
@@ -44,7 +43,9 @@ public class MyApplication extends AppCompatActivity {
 
         //log_exercise = (TextView)findViewById(R.id.log_exercise);
         fillLogEntry(getFormattedDate(calendar), log_date);
-        logEntrySpace.setOnTouchListener(new SwipeGestureListener(MyApplication.this) {
+      //  logEntrySpace.
+        ScrollView sv = (ScrollView)findViewById(R.id.scroll);
+                sv.setOnTouchListener(new SwipeGestureListener(MyApplication.this) {
             public void onSwipeLeft() {
                 backDate(null);
             }
@@ -111,40 +112,48 @@ public class MyApplication extends AppCompatActivity {
 
         for (Exercise exercise : exercises) {
 
-            ContextThemeWrapper themeSetter = new ContextThemeWrapper(MyApplication.this, R.style.Log_Entry);
             LogEntry entry = (LogEntry) getLayoutInflater().inflate(R.layout.log_entry_template, null);
             entry.setId(id_exercise++);
             entry.setExercise(exercise);
 
-            ImageButton b_editEntry = (ImageButton) getLayoutInflater().inflate(R.layout.edit_entry_template, null);
-            b_editEntry.setId(id_edit++);
-
-            ImageButton b_addToEntry = (ImageButton) getLayoutInflater().inflate(R.layout.add_to_entry_template, null);
-            b_addToEntry.setId(id_add++);
-
             TextView tv_exerciseSets = (TextView) getLayoutInflater().inflate(R.layout.log_entry_exercise_sets_template, null);
-            TextView tv_exerciseName = (TextView) getLayoutInflater().inflate(R.layout.log_entry_exercise_name_template, null);
-
+                      TextView tv_exerciseName = (TextView) getLayoutInflater().inflate(R.layout.log_entry_exercise_name_template, null);
             tv_exerciseName.setText(exercise.getExerciseName());
             tv_exerciseSets.setText(exercise.getSetInfo());
 
             LinearLayout.LayoutParams llParams = new LinearLayout.LayoutParams(
+                    0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
+            LinearLayout name_sets = new LinearLayout(MyApplication.this);
+            name_sets.setLayoutParams(llParams);
+            name_sets.setOrientation(LinearLayout.VERTICAL);
+            name_sets.setPadding(8,0,32,0);
+
+            name_sets.addView(tv_exerciseName);
+            name_sets.addView(tv_exerciseSets);
+
+            ImageButton b_editEntry = (ImageButton) getLayoutInflater().inflate(R.layout.edit_entry_template, null);
+            b_editEntry.setId(id_edit++);
+            ImageButton b_addToEntry = (ImageButton) getLayoutInflater().inflate(R.layout.add_to_entry_template, null);
+            b_addToEntry.setId(id_add++);
+
+           llParams = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            llParams.gravity = Gravity.RIGHT;
 
             LinearLayout add_edit = new LinearLayout(MyApplication.this);
             add_edit.setLayoutParams(llParams);
-            add_edit.setOrientation(LinearLayout.HORIZONTAL);
+            add_edit.setOrientation(LinearLayout.VERTICAL);
+
+            add_edit.addView(b_addToEntry);
+            add_edit.addView(b_editEntry);
 
             llParams = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            add_edit.addView(b_editEntry);
-            add_edit.addView(b_addToEntry);
-            entry.addView(add_edit);
-            entry.addView(tv_exerciseName);
-            entry.addView(tv_exerciseSets);
 
-            llParams.setMargins(0, 24, 0, 24);
+            entry.setLayoutParams(llParams);
+            entry.addView(name_sets);
+            entry.addView(add_edit);
+
+            llParams.setMargins(0, 16, 0, 16);
             logEntrySpace.addView(entry, llParams);
         }
     }
@@ -161,7 +170,7 @@ public class MyApplication extends AppCompatActivity {
         startActivityForResult(intent, 1);
     }
 
-    public void goToAddToEntry(View v){
+    public void goToAddToEntry(View v) {
         int id_exercise = (int) (v.getId() - 20000);
         LogEntry entry = (LogEntry) findViewById(id_exercise);
         Bundle bundle = new Bundle();
