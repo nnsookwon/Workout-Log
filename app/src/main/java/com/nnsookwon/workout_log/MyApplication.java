@@ -1,11 +1,11 @@
 package com.nnsookwon.workout_log;
 
-import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.ContextThemeWrapper;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -44,19 +44,16 @@ public class MyApplication extends AppCompatActivity {
 
         //log_exercise = (TextView)findViewById(R.id.log_exercise);
         fillLogEntry(getFormattedDate(calendar), log_date);
-       logEntrySpace.setOnTouchListener(new SwipeGestureListener(MyApplication.this){
-           public void onSwipeLeft(){
-              backDate(null);
+        logEntrySpace.setOnTouchListener(new SwipeGestureListener(MyApplication.this) {
+            public void onSwipeLeft() {
+                backDate(null);
             }
-            public void onSwipeRight(){
-               forwardDate(null);
-           }
+
+            public void onSwipeRight() {
+                forwardDate(null);
+            }
         });
-
-
     }
-
-
 
     public String getFormattedDate(Calendar cal) {
 
@@ -110,15 +107,21 @@ public class MyApplication extends AppCompatActivity {
         tv_date.setText(date);
         int id_exercise = 1;
         int id_edit = 10001;
+        int id_add = 20001;
 
         for (Exercise exercise : exercises) {
+
             ContextThemeWrapper themeSetter = new ContextThemeWrapper(MyApplication.this, R.style.Log_Entry);
             LogEntry entry = (LogEntry) getLayoutInflater().inflate(R.layout.log_entry_template, null);
             entry.setId(id_exercise++);
             entry.setExercise(exercise);
 
-            ImageButton b_editEntry = (ImageButton) getLayoutInflater().inflate(R.layout.edit_entry_template, entry, false);
+            ImageButton b_editEntry = (ImageButton) getLayoutInflater().inflate(R.layout.edit_entry_template, null);
             b_editEntry.setId(id_edit++);
+
+            ImageButton b_addToEntry = (ImageButton) getLayoutInflater().inflate(R.layout.add_to_entry_template, null);
+            b_addToEntry.setId(id_add++);
+
             TextView tv_exerciseSets = (TextView) getLayoutInflater().inflate(R.layout.log_entry_exercise_sets_template, null);
             TextView tv_exerciseName = (TextView) getLayoutInflater().inflate(R.layout.log_entry_exercise_name_template, null);
 
@@ -126,9 +129,18 @@ public class MyApplication extends AppCompatActivity {
             tv_exerciseSets.setText(exercise.getSetInfo());
 
             LinearLayout.LayoutParams llParams = new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            llParams.gravity = Gravity.RIGHT;
 
-            entry.addView(b_editEntry);
+            LinearLayout add_edit = new LinearLayout(MyApplication.this);
+            add_edit.setLayoutParams(llParams);
+            add_edit.setOrientation(LinearLayout.HORIZONTAL);
+
+            llParams = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            add_edit.addView(b_editEntry);
+            add_edit.addView(b_addToEntry);
+            entry.addView(add_edit);
             entry.addView(tv_exerciseName);
             entry.addView(tv_exerciseSets);
 
@@ -148,6 +160,20 @@ public class MyApplication extends AppCompatActivity {
         intent.putExtras(bundle);
         startActivityForResult(intent, 1);
     }
+
+    public void goToAddToEntry(View v){
+        int id_exercise = (int) (v.getId() - 20000);
+        LogEntry entry = (LogEntry) findViewById(id_exercise);
+        Bundle bundle = new Bundle();
+        bundle.putInt("day", calendar.get(Calendar.DAY_OF_MONTH));
+        bundle.putInt("month", calendar.get(Calendar.MONTH));
+        bundle.putInt("year", calendar.get(Calendar.YEAR));
+        bundle.putString("exerciseName", entry.getExercise().getExerciseName());
+        Intent intent = new Intent(this, AddNewExercise.class);
+        intent.putExtras(bundle);
+        startActivityForResult(intent, 1);
+    }
+
     public void goToEditEntry(View v) {
         //go to EditExercise.class
 
@@ -167,12 +193,7 @@ public class MyApplication extends AppCompatActivity {
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1) {
-            if (resultCode == Activity.RESULT_OK) {
-
-            }
-            if (resultCode == Activity.RESULT_CANCELED) {
-                fillLogEntry(getFormattedDate(calendar), log_date);
-            }
+            fillLogEntry(getFormattedDate(calendar), log_date);
         }
     }
 }

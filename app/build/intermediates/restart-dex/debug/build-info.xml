@@ -4,30 +4,37 @@
     api-level="23"
     density="420dpi"
     format="7"
-    timestamp="451949214739651"
+    timestamp="459585710500315"
     token="-4891606476800178743" >
 
     <task
         name="javac"
-        duration="491" />
+        duration="0" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="456" />
+        duration="0" />
     <task
         name="verifier"
-        duration="172" />
+        duration="0" />
 
-    <artifact
-        location="C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\outputs\apk\app-debug.apk"
-        type="MAIN" />
-
-    <build timestamp="451949214739651" >
+    <build timestamp="458508174087188" >
         <artifact
             location="C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\outputs\apk\app-debug.apk"
             type="MAIN" />
     </build>
+    <build
+        timestamp="459525663641183"
+        verifier="METHOD_DELETED" >
+        <artifact
+            location="C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\intermediates\res\resources-debug.ap_"
+            type="RESOURCES" />
+        <artifact
+            location="C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_3\classes.dex"
+            type="DEX" />
+    </build>
+    <build timestamp="459585710500315" />
 
 </instant-run>

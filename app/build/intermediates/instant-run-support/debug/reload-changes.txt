@@ -1,0 +1,3 @@
+CHANGED,C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\com\android\tools\fd\runtime\AppPatchesLoaderImpl.class
+CHANGED,C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\com\nnsookwon\workout_log\EditEntry$override.class
+CHANGED,C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\intermediates\transforms\instantRun\debug\folders\4000\5\enhanced\com\nnsookwon\workout_log\MyApplication$override.class

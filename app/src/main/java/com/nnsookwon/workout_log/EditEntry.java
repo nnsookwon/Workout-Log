@@ -5,14 +5,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.ContextThemeWrapper;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created by nnsoo on 8/21/2016.
@@ -50,6 +56,7 @@ public class EditEntry extends AppCompatActivity {
 
     public void populateETfields() {
 
+        table.removeAllViews();
         TableLayout.LayoutParams rowLp = new TableLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT,
@@ -101,6 +108,7 @@ public class EditEntry extends AppCompatActivity {
         finished(v);
     }
 
+
     public void finished(View v) {
         exerciseLog.open();
         String weight;
@@ -136,10 +144,11 @@ public class EditEntry extends AppCompatActivity {
                 exerciseLog.updateEntry(exercise.getDate(), exercise.getExerciseName(), exercise.arrayListToJsonString());
 
             Intent returnIntent = new Intent();
-            setResult(Activity.RESULT_CANCELED, returnIntent);
+            setResult(Activity.RESULT_OK, returnIntent);
             finish();
         }
         exerciseLog.close();
     }
-}
 
+
+}

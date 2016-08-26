@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\src\main\AndroidManifest.xml:2:1-47:12
+ADDED from C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\src\main\AndroidManifest.xml:2:1-51:12
 	xmlns:android
 		ADDED from C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\src\main\AndroidManifest.xml:2:11-69
 	package
@@ -14,13 +14,16 @@ ADDED from C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLo
 		INJECTED from C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\src\main\AndroidManifest.xml
 application
-ADDED from C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\src\main\AndroidManifest.xml:5:5-45:19
+ADDED from C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\src\main\AndroidManifest.xml:5:5-49:19
 MERGED from [com.android.support:appcompat-v7:23.4.0] C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.4.0\AndroidManifest.xml:25:5-20
 MERGED from [com.android.support:animated-vector-drawable:23.4.0] C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.4.0\AndroidManifest.xml:7:5-20
 MERGED from [com.android.support:support-vector-drawable:23.4.0] C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.4.0\AndroidManifest.xml:7:5-20
 MERGED from [com.android.support:support-v4:23.4.0] C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:support-v4:23.4.0] C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:support-vector-drawable:23.4.0] C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.4.0\AndroidManifest.xml:7:5-20
+MERGED from [com.android.support:support-v4:23.4.0] C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-appindexing:8.1.0] C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\8.1.0\AndroidManifest.xml:19:5-20
+MERGED from [com.google.android.gms:play-services-basement:8.1.0] C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\8.1.0\AndroidManifest.xml:20:5-24:19
 MERGED from [com.android.support:support-v4:23.4.0] C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\AndroidManifest.xml:22:5-20
 	android:supportsRtl
 		ADDED from C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\src\main\AndroidManifest.xml:9:9-35
@@ -82,6 +85,13 @@ action#com.nnsookwon.EDIT_ENTRY
 ADDED from C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\src\main\AndroidManifest.xml:40:17-67
 	android:name
 		ADDED from C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\src\main\AndroidManifest.xml:40:25-64
+meta-data#com.google.android.gms.version
+ADDED from C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\src\main\AndroidManifest.xml:46:9-48:69
+MERGED from [com.google.android.gms:play-services-basement:8.1.0] C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\8.1.0\AndroidManifest.xml:21:9-23:69
+	android:name
+		ADDED from C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\src\main\AndroidManifest.xml:47:13-58
+	android:value
+		ADDED from C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\src\main\AndroidManifest.xml:48:13-66
 uses-sdk
 INJECTED from C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.android.support:appcompat-v7:23.4.0] C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.4.0\AndroidManifest.xml:21:5-23:78
@@ -90,6 +100,9 @@ MERGED from [com.android.support:support-vector-drawable:23.4.0] C:\Users\nnsoo\
 MERGED from [com.android.support:support-v4:23.4.0] C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\AndroidManifest.xml:20:5-43
 MERGED from [com.android.support:support-v4:23.4.0] C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\AndroidManifest.xml:20:5-43
 MERGED from [com.android.support:support-vector-drawable:23.4.0] C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.4.0\AndroidManifest.xml:5:5-43
+MERGED from [com.android.support:support-v4:23.4.0] C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\AndroidManifest.xml:20:5-43
+MERGED from [com.google.android.gms:play-services-appindexing:8.1.0] C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\8.1.0\AndroidManifest.xml:18:5-42
+MERGED from [com.google.android.gms:play-services-basement:8.1.0] C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\8.1.0\AndroidManifest.xml:18:5-42
 MERGED from [com.android.support:support-v4:23.4.0] C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\AndroidManifest.xml:20:5-43
 	android:targetSdkVersion
 		INJECTED from C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\src\main\AndroidManifest.xml

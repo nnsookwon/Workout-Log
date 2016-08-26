@@ -12,7 +12,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -33,10 +32,9 @@ import java.util.Locale;
 public class AddNewExercise extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private String nDate;
-    private String nExercise;
+    private String nExerciseName;
 
     private EditText et_date, et_weight, et_reps;
-    private Button b_addToLog, b_exitOut;
     public ExerciseLog exerciseLog;
 
     private Spinner sp_exerciseOptions;
@@ -65,9 +63,6 @@ public class AddNewExercise extends AppCompatActivity implements AdapterView.OnI
         et_date = (EditText) findViewById(R.id.et_date);
         et_weight = (EditText) findViewById(R.id.et_weight);
         et_reps = (EditText) findViewById(R.id.et_reps);
-        b_addToLog = (Button) findViewById(R.id.b_addToLog);
-        b_exitOut = (Button) findViewById(R.id.b_exitAddNewExercise);
-
 
         adapter = new ArrayAdapter<String>(AddNewExercise.this,
                 android.R.layout.simple_spinner_dropdown_item, exercises);
@@ -75,7 +70,7 @@ public class AddNewExercise extends AppCompatActivity implements AdapterView.OnI
         sp_exerciseOptions.setAdapter(adapter);
         sp_exerciseOptions.setOnItemSelectedListener(AddNewExercise.this);
 
-        initCalendar();
+        initFields();
     }
 
     public void loadExerciseList() {
@@ -116,7 +111,7 @@ public class AddNewExercise extends AppCompatActivity implements AdapterView.OnI
         }
         pos = sp_exerciseOptions.getSelectedItemPosition(); //in case "other" was selected
 
-        nExercise = exercises.get(pos);
+        nExerciseName = exercises.get(pos);
     }
 
     public void onNothingSelected(AdapterView<?> av) {
@@ -158,12 +153,20 @@ public class AddNewExercise extends AppCompatActivity implements AdapterView.OnI
 
     }
 
-    public void initCalendar() {
+    public void initFields() {
         calendar = Calendar.getInstance();
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-            calendar.set(bundle.getInt("year"), bundle.getInt("month"), bundle.getInt("day"));
+            if (bundle.containsKey("year") &&
+                    bundle.containsKey("month") &&
+                    bundle.containsKey("day"))
+                calendar.set(bundle.getInt("year"), bundle.getInt("month"), bundle.getInt("day"));
+
+            if (bundle.containsKey("exerciseName")) {
+                nExerciseName = bundle.getString("exerciseName");
+                sp_exerciseOptions.setSelection(exercises.indexOf(nExerciseName));
+            }
         }
         nDate = new SimpleDateFormat("MMMM dd, yyyy", Locale.US).format(calendar.getTime());
         et_date.setText(nDate);
@@ -201,13 +204,13 @@ public class AddNewExercise extends AppCompatActivity implements AdapterView.OnI
                 !et_reps.getText().toString().isEmpty()) {
             //user can only create entry if all fields are filled
 
-            Exercise exercise = new Exercise(nDate, nExercise);
+            Exercise exercise = new Exercise(nDate, nExerciseName);
             exercise.addNewSet(Double.parseDouble(et_weight.getText().toString()),
                     Double.parseDouble(et_reps.getText().toString()));
 
             exerciseLog.open();
-            if (exerciseLog.dateHasExercise(nDate, nExercise)) {
-                exerciseLog.addSet(nDate, nExercise, exercise.getSet(0));
+            if (exerciseLog.dateHasExercise(nDate, nExerciseName)) {
+                exerciseLog.addSet(nDate, nExerciseName, exercise.getSet(0));
             } else {
                 exerciseLog.createEntry(exercise.getDate(), exercise.getExerciseName(), exercise.arrayListToJsonString());
             }
@@ -222,7 +225,7 @@ public class AddNewExercise extends AppCompatActivity implements AdapterView.OnI
     public void exitAddNewExercise(View v) {
         //return back to MyApplication
         Intent returnIntent = new Intent();
-        setResult(Activity.RESULT_CANCELED, returnIntent);
+        setResult(Activity.RESULT_OK, returnIntent);
         finish();
     }
 }

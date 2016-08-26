@@ -17,20 +17,23 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginBottom="4dp"
         android:onClick="deleteEntry"
-        android:text="@string/b_remove_exercise"
-        android:layout_gravity="right"/>
+        android:text="@string/b_remove_exercise" />
+
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="right"
         android:onClick="finished"
-        android:text="@string/b_update_exercise"
-        android:layout_gravity="right"/>
+        android:text="@string/b_update_exercise" />
 
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
 
         <LinearLayout
@@ -41,17 +44,16 @@
 
 
             <TableLayout
+                android:id="@+id/table"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="center_horizontal"
-                android:id="@+id/table">
+                android:layout_gravity="center_horizontal">
 
             </TableLayout>
 
         </LinearLayout>
 
     </ScrollView>
-
 
 
 </LinearLayout>
