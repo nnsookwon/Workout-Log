@@ -25,6 +25,7 @@ import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Locale;
 
 /**
  * Created by nnsoo on 8/17/2016.
@@ -164,7 +165,7 @@ public class AddNewExercise extends AppCompatActivity implements AdapterView.OnI
         if (bundle != null) {
             calendar.set(bundle.getInt("year"), bundle.getInt("month"), bundle.getInt("day"));
         }
-        nDate = new SimpleDateFormat("MMMM dd, yyyy").format(calendar.getTime());
+        nDate = new SimpleDateFormat("MMMM dd, yyyy", Locale.US).format(calendar.getTime());
         et_date.setText(nDate);
     }
 
@@ -180,7 +181,7 @@ public class AddNewExercise extends AppCompatActivity implements AdapterView.OnI
                     public void onDateSet(DatePicker datepicker, int y, int m, int d) {
 
                         calendar.set(y, m, d);
-                        nDate = new SimpleDateFormat("MMMM dd, yyyy").format(calendar.getTime());
+                        nDate = new SimpleDateFormat("MMMM dd, yyyy", Locale.US).format(calendar.getTime());
                         et_date.setText(nDate);
                     }
                 }, year, month, day);

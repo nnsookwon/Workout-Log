@@ -16,6 +16,7 @@ import android.widget.TextView;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Locale;
 
 public class MyApplication extends AppCompatActivity {
 
@@ -43,11 +44,23 @@ public class MyApplication extends AppCompatActivity {
 
         //log_exercise = (TextView)findViewById(R.id.log_exercise);
         fillLogEntry(getFormattedDate(calendar), log_date);
+       logEntrySpace.setOnTouchListener(new SwipeGestureListener(MyApplication.this){
+           public void onSwipeLeft(){
+              backDate(null);
+            }
+            public void onSwipeRight(){
+               forwardDate(null);
+           }
+        });
+
+
     }
+
+
 
     public String getFormattedDate(Calendar cal) {
 
-        return new SimpleDateFormat("MMMM dd, yyyy").format(cal.getTime());
+        return new SimpleDateFormat("MMMM dd, yyyy", Locale.US).format(cal.getTime());
 
     }
 
@@ -73,7 +86,7 @@ public class MyApplication extends AppCompatActivity {
                 new DatePickerDialog.OnDateSetListener() {
                     public void onDateSet(DatePicker datepicker, int y, int m, int d) {
                         calendar.set(y, m, d);
-                        String nDate = (new SimpleDateFormat("MMMM dd, yyyy").format(calendar.getTime()));
+                        String nDate = (new SimpleDateFormat("MMMM dd, yyyy", Locale.US).format(calendar.getTime()));
 
                         fillLogEntry(nDate, log_date);
                     }

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    style="@style/Screen_Format">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Plain_Text"
+        android:text="Date:"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Plain_Text"
+        android:focusable="false"
+        android:onClick="chooseDate"
+        android:id="@+id/et_date"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Plain_Text"
+        android:text="Exercise:"/>
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/sp_exercises"
+        style="@style/Plain_Text">
+    </Spinner>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Plain_Text"
+        android:text="Weight:"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/weight_hint"
+        android:inputType="numberDecimal"
+        android:id="@+id/et_weight"
+        style="@style/Plain_Text"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Plain_Text"
+        android:text="Reps:"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:id="@+id/et_reps"
+        style="@style/Plain_Text"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Plain_Text"
+        android:text="Add"
+        android:onClick="addToLog"
+        android:id="@+id/b_addToLog"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Plain_Text"
+        android:text="Done"
+        android:onClick="exitAddNewExercise"
+        android:id="@+id/b_exitAddNewExercise"/>
+
+</LinearLayout>
