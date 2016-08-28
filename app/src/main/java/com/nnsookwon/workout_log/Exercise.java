@@ -13,26 +13,37 @@ public class Exercise {
     private ArrayList<double[]> sets; //one set is {weight, reps}
     private String date;
     private String exerciseName;
+    private String category;
 
 
     public Exercise() {
         date = "";
         exerciseName = "";
+        category ="";
         sets = new ArrayList<double[]>();
     }
 
-    public Exercise(String d, String n) {
-        date = d;
-        exerciseName = n;
+    public Exercise(String nDate, String nExerciseName, String nCategory) {
+        date = nDate;
+        exerciseName = nExerciseName;
+        category = nCategory;
         sets = new ArrayList<double[]>();
     }
 
-    public void setExerciseName(String n) {
-        exerciseName = n;
+    public void setExerciseName(String nExerciseName) {
+        exerciseName = nExerciseName;
     }
 
     public String getExerciseName() {
         return exerciseName;
+    }
+
+    public void setCatgory (String nCategory){
+        category = nCategory;
+    }
+
+    public String getCategory(){
+        return category;
     }
 
     public void addNewSet(double weight, double reps) {

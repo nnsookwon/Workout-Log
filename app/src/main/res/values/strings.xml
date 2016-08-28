@@ -6,4 +6,6 @@
     <string name="b_remove_exercise">remove exercise</string>
     <string name="b_update_exercise">update</string>
     <string name="b_add_set">add set</string>
+    <string name="category">Category:</string>
+    <string name="exercise">Exercise:</string>
 </resources>

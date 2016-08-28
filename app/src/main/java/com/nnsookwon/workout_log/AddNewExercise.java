@@ -2,7 +2,6 @@ package com.nnsookwon.workout_log;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -18,14 +18,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.Locale;
 
 /**
@@ -33,102 +28,98 @@ import java.util.Locale;
  */
 public class AddNewExercise extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    private String nDate;
-    private String nExerciseName;
+    private String nDate, nExerciseName, nCategory;
 
     private EditText et_date, et_weight, et_reps;
-    public ExerciseLog exerciseLog;
+    private ExerciseLogDB exerciseLogDB;
+    private ExercisesDB exercisesDB;
 
-    private Spinner sp_exerciseOptions;
+    private Spinner sp_categories;
+    private Spinner sp_exercises;
+    ArrayList<String> categories;
     ArrayList<String> exercises;
+
+    ArrayAdapter<String> adapterCategories;
+    ArrayAdapter<String> adapterExercises;
     SharedPreferences savedExercises;
     public static String filename = "SavedExercises";
     private static final String KEY_EXERCISES = "key_exercises";
-    ArrayAdapter<String> adapter;
+    private boolean userIsInteracting;
 
     Calendar calendar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_new_exercise);
+        userIsInteracting = false;
 
-        exerciseLog = new ExerciseLog(getApplicationContext());
-        exercises = new ArrayList<String>();
-        savedExercises = getSharedPreferences(filename, Context.MODE_PRIVATE);
+        exerciseLogDB = new ExerciseLogDB(getApplicationContext());
 
-        if (savedExercises.contains(KEY_EXERCISES))
-            loadExerciseList();
-        if (exercises.size() == 0) {
-            initExercises();
-        }
+        nExerciseName = "";
+        nCategory = "";
+
+        exercisesDB = new ExercisesDB(getApplicationContext());
+        exercisesDB.open();
+        initSpinners();
+
         et_date = (EditText) findViewById(R.id.et_date);
         et_weight = (EditText) findViewById(R.id.et_weight);
         et_reps = (EditText) findViewById(R.id.et_reps);
 
-        adapter = new ArrayAdapter<String>(AddNewExercise.this,
-                android.R.layout.simple_spinner_dropdown_item, exercises);
-        sp_exerciseOptions = (Spinner) findViewById(R.id.sp_exercises);
-        sp_exerciseOptions.setAdapter(adapter);
-        sp_exerciseOptions.setOnItemSelectedListener(AddNewExercise.this);
-
         initFields();
     }
 
-    public void loadExerciseList() {
-        //loads list of exercise options from SharedPreferences
-        Gson gson = new Gson();
-        String json = savedExercises.getString(KEY_EXERCISES, null);
-        Type type = new TypeToken<ArrayList<String>>() {
-        }.getType();
-        exercises = gson.fromJson(json, type);
+    public void initSpinners() {
+        categories = exercisesDB.getCategories();
+        adapterCategories = new ArrayAdapter<String>(AddNewExercise.this,
+                android.R.layout.simple_spinner_dropdown_item, categories);
+        sp_categories = (Spinner) findViewById(R.id.sp_categories);
+
+        if (sp_categories != null) {
+            sp_categories.setOnItemSelectedListener(AddNewExercise.this);
+            sp_categories.setAdapter(adapterCategories);
+        }
+
+        sp_exercises = (Spinner) findViewById(R.id.sp_exercises);
+        if (sp_exercises != null) {
+            sp_exercises.setOnItemSelectedListener(AddNewExercise.this);
+            updateExerciseSpinner();
+        }
     }
 
-    public void saveExerciseList() {
-        //sorts exercises alphabetically and then save into SharedPreferences
-        //retain ordering of first two, "" and "Other" options
-        Collections.sort(exercises.subList(2, exercises.size()));
-        SharedPreferences.Editor editor = savedExercises.edit();
-        Gson gson = new Gson();
-
-        String json = gson.toJson(exercises);
-
-        editor.putString(KEY_EXERCISES, json);
-        editor.commit();
-    }
-
-    public void initExercises() {
-        //to be called if first time user
-
-        exercises.add("");
-        exercises.add("Other");
-        exercises.add("Flat Bench Press");
-        exercises.add("Incline DB Press");
-        exercises.add("Lateral DB Raises");
-        exercises.add("DB Shoulder Press");
-        exercises.add("Bicep Curls");
-        exercises.add("DB Shrugs");
-        saveExerciseList();
+    public void updateExerciseSpinner() {
+        exercises = exercisesDB.getExercises(nCategory);
+        adapterExercises = new ArrayAdapter<String>(AddNewExercise.this,
+                android.R.layout.simple_spinner_dropdown_item, exercises);
+        sp_exercises.setAdapter(adapterExercises);
     }
 
     public void onItemSelected(AdapterView<?> av, View v, int n, long l) {
-        int pos = sp_exerciseOptions.getSelectedItemPosition();
-        if (pos == 1) {
-            addOption();
+        if (userIsInteracting) {
+            int pos;
+            switch (av.getId()) {
+                case R.id.sp_categories:
+                    pos = sp_categories.getSelectedItemPosition();
+                    nCategory = categories.get(pos);
+                    updateExerciseSpinner();
+                    break;
+                case R.id.sp_exercises:
+                    pos = sp_exercises.getSelectedItemPosition();
+                    if (pos == 1)
+                        addOption();
+                    else
+                        nExerciseName = exercises.get(pos);
+                    break;
+            }
         }
-        nExerciseName = exercises.get(pos);
     }
-
     public void onNothingSelected(AdapterView<?> av) {
 
     }
 
     public void addOption() {
-        //add option to list of exercises
-
-        View view = AddNewExercise.this.getLayoutInflater().inflate(
-                R.layout.add_new_exercise, null);
-
         AlertDialog.Builder builder = new AlertDialog.Builder(AddNewExercise.this);
         builder.setTitle("Add New Exercise");
         builder.setMessage("Enter new exercise: ");
@@ -144,23 +135,21 @@ public class AddNewExercise extends AppCompatActivity implements AdapterView.OnI
 
                 if (newExercise.length() > 0) {
                     //input must be more than just spaces
-                    if (exercises.contains(newExercise)) {
-                        //prevents duplicate exercise options
+
+                    if (!exercisesDB.createEntry(nCategory, newExercise))
                         Toast.makeText(AddNewExercise.this, "Exercise already exists", Toast.LENGTH_SHORT).show();
-                    } else {
-                        exercises.add(newExercise);
-                        saveExerciseList();
-                    }
-                    sp_exerciseOptions.setSelection(exercises.indexOf(newExercise));
+
+                    updateExerciseSpinner();
+                    sp_exercises.setSelection(exercises.indexOf(newExercise));
                 } else
-                    sp_exerciseOptions.setSelection(0);
+                    sp_exercises.setSelection(0);
                 d.dismiss();
             }
         });
 
         builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface d, int whichButton) {
-                sp_exerciseOptions.setSelection(0);
+                sp_exercises.setSelection(0);
                 d.dismiss();
             }
         });
@@ -168,7 +157,7 @@ public class AddNewExercise extends AppCompatActivity implements AdapterView.OnI
         builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
             @Override
             public void onCancel(DialogInterface d) {
-                sp_exerciseOptions.setSelection(0);
+                sp_exercises.setSelection(0);
             }
         });
 
@@ -186,10 +175,20 @@ public class AddNewExercise extends AppCompatActivity implements AdapterView.OnI
                     bundle.containsKey("day"))
                 calendar.set(bundle.getInt("year"), bundle.getInt("month"), bundle.getInt("day"));
 
+            if (bundle.containsKey("category")) {
+                nCategory = bundle.getString("category");
+                sp_categories.setSelection(categories.indexOf(nCategory));
+                updateExerciseSpinner();
+            }
             if (bundle.containsKey("exerciseName")) {
                 nExerciseName = bundle.getString("exerciseName");
-                sp_exerciseOptions.setSelection(exercises.indexOf(nExerciseName));
+                int pos = exercises.indexOf(nExerciseName);
+                sp_exercises.setSelection(pos,true);
+                Log.e("TAG",""+sp_exercises.getSelectedItem().toString().equals(nExerciseName));
+                Log.e("TAG",""+sp_exercises.getSelectedItem().toString());
+
             }
+
         }
         nDate = new SimpleDateFormat("MMMM dd, yyyy", Locale.US).format(calendar.getTime());
         et_date.setText(nDate);
@@ -221,35 +220,48 @@ public class AddNewExercise extends AppCompatActivity implements AdapterView.OnI
             //prevent user from adding a set of 0 reps
             Toast.makeText(AddNewExercise.this, "Please enter valid number of reps", Toast.LENGTH_SHORT).show();
 
-        } else if (!et_date.getText().toString().isEmpty() &&
-                !sp_exerciseOptions.getSelectedItem().toString().isEmpty() &&
-                !et_weight.getText().toString().isEmpty() &&
-                !et_reps.getText().toString().isEmpty()) {
+        } else if (!(et_date.getText().toString().isEmpty() ||
+                sp_categories.getSelectedItem().toString().isEmpty() ||
+                sp_exercises.getSelectedItem().toString().isEmpty() ||
+                et_weight.getText().toString().isEmpty() ||
+                et_reps.getText().toString().isEmpty())) {
             //user can only create entry if all fields are filled
 
-            Exercise exercise = new Exercise(nDate, nExerciseName);
+            Exercise exercise = new Exercise(nDate, nExerciseName, nCategory);
             exercise.addNewSet(Double.parseDouble(et_weight.getText().toString()),
                     Double.parseDouble(et_reps.getText().toString()));
 
-            exerciseLog.open();
-            if (exerciseLog.dateHasExercise(nDate, nExerciseName)) {
-                exerciseLog.addSet(nDate, nExerciseName, exercise.getSet(0));
+            exerciseLogDB.open();
+            if (exerciseLogDB.dateHasExercise(exercise)) {
+                exerciseLogDB.addSet(exercise);
             } else {
-                exerciseLog.createEntry(exercise.getDate(), exercise.getExerciseName(), exercise.arrayListToJsonString());
+                exerciseLogDB.createEntry(exercise);
             }
-            exerciseLog.close();
+            exerciseLogDB.close();
 
             Toast.makeText(AddNewExercise.this, "Added to log", Toast.LENGTH_SHORT).show();
 
         } else
             Toast.makeText(AddNewExercise.this, "Please fill out all fields", Toast.LENGTH_SHORT).show();
+
     }
 
     public void exitAddNewExercise(View v) {
         //return back to MyApplication
+        exercisesDB.close();
         Intent returnIntent = new Intent();
         setResult(Activity.RESULT_OK, returnIntent);
         finish();
+    }
+
+    public void onUserInteraction() {
+        super.onUserInteraction();
+        userIsInteracting = true;
+    }
+
+    public void onBackPressed(){
+        exercisesDB.close();
+        super.onBackPressed();
     }
 }
 

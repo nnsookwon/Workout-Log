@@ -1,77 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    style="@style/Screen_Format">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Screen_Format"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/Plain_Text"
-        android:text="Date:"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:focusableInTouchMode="true">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/Plain_Text"
-        android:focusable="false"
-        android:onClick="chooseDate"
-        android:id="@+id/et_date"/>
+        <TextView
+            style="@style/Plain_Text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Date:" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/Plain_Text"
-        android:text="Exercise:"/>
+        <EditText
+            android:id="@+id/et_date"
+            style="@style/Plain_Text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:onClick="chooseDate" />
 
-    <Spinner
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/sp_exercises"
-        style="@style/Plain_Text">
-    </Spinner>
+        <TextView
+            style="@style/Plain_Text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Category:" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/Plain_Text"
-        android:text="Weight:"/>
+        <Spinner
+            android:id="@+id/sp_categories"
+            style="@style/Plain_Text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dropdown" />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/weight_hint"
-        android:inputType="numberDecimal"
-        android:id="@+id/et_weight"
-        style="@style/Plain_Text"/>
+        <TextView
+            style="@style/Plain_Text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Exercise:" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/Plain_Text"
-        android:text="Reps:"/>
+        <Spinner
+            android:id="@+id/sp_exercises"
+            style="@style/Plain_Text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dropdown" />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:id="@+id/et_reps"
-        style="@style/Plain_Text"/>
+        <TextView
+            style="@style/Plain_Text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Weight:" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/Plain_Text"
-        android:text="Add"
-        android:onClick="addToLog"
-        android:id="@+id/b_addToLog"/>
+        <EditText
+            android:id="@+id/et_weight"
+            style="@style/Plain_Text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/weight_hint"
+            android:inputType="numberDecimal" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        style="@style/Plain_Text"
-        android:text="Done"
-        android:onClick="exitAddNewExercise"
-        android:id="@+id/b_exitAddNewExercise"/>
+        <TextView
+            style="@style/Plain_Text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Reps:" />
 
-</LinearLayout>
+        <EditText
+            android:id="@+id/et_reps"
+            style="@style/Plain_Text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number" />
+
+        <Button
+            android:id="@+id/b_addToLog"
+            style="@style/Plain_Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:onClick="addToLog"
+            android:text="Add" />
+
+        <Button
+            android:id="@+id/b_exitAddNewExercise"
+            style="@style/Plain_Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:onClick="exitAddNewExercise"
+            android:text="Done" />
+
+    </LinearLayout>
+
+</ScrollView>

@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.ContextThemeWrapper;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -13,12 +12,6 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 
 /**
  * Created by nnsoo on 8/21/2016.
@@ -28,13 +21,13 @@ public class EditEntry extends AppCompatActivity {
     private Exercise exercise;
     private TextView header;
     private TableLayout table;
-    private ExerciseLog exerciseLog;
+    private ExerciseLogDB exerciseLogDB;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_entry);
         initExercise();
-        exerciseLog = new ExerciseLog(getApplicationContext());
+        exerciseLogDB = new ExerciseLogDB(getApplicationContext());
         table = (TableLayout) findViewById(R.id.table);
         table.setStretchAllColumns(true);
         header = (TextView) findViewById(R.id.tv_header);
@@ -101,16 +94,16 @@ public class EditEntry extends AppCompatActivity {
     }
 
     public void deleteEntry(View v) {
-        exerciseLog.open();
-        exerciseLog.deleteEntry(exercise.getDate(), exercise.getExerciseName());
-        exerciseLog.close();
+        exerciseLogDB.open();
+        exerciseLogDB.deleteEntry(exercise);
+        exerciseLogDB.close();
         Toast.makeText(EditEntry.this, "Entry removed from workout log", Toast.LENGTH_SHORT).show();
         finished(v);
     }
 
 
     public void finished(View v) {
-        exerciseLog.open();
+        exerciseLogDB.open();
         String weight;
         String reps;
         boolean error = false;
@@ -139,15 +132,15 @@ public class EditEntry extends AppCompatActivity {
         if (!error) {
             //if no errors, complete update and return to main
             if (exercise.getSetList().size() == 0)
-                exerciseLog.deleteEntry(exercise.getDate(), exercise.getExerciseName());
+                exerciseLogDB.deleteEntry(exercise);
             else
-                exerciseLog.updateEntry(exercise.getDate(), exercise.getExerciseName(), exercise.arrayListToJsonString());
+                exerciseLogDB.updateEntry(exercise);
 
             Intent returnIntent = new Intent();
             setResult(Activity.RESULT_OK, returnIntent);
             finish();
         }
-        exerciseLog.close();
+        exerciseLogDB.close();
     }
 
 

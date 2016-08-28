@@ -232,6 +232,7 @@
     <string name="b_add_set">add set</string>
     <string name="b_remove_exercise">remove exercise</string>
     <string name="b_update_exercise">update</string>
+    <string name="category">Category:</string>
     <string name="common_android_wear_notification_needs_update_text"><ns1:g id="app_name">%1$s</ns1:g> requires an update to the Android Wear app.</string>
     <string name="common_android_wear_update_text"><ns1:g id="app_name">%1$s</ns1:g> won\'t run unless you update the Android Wear app.</string>
     <string msgid="6006316683626838685" name="common_android_wear_update_title">Update Android Wear</string>
@@ -262,6 +263,7 @@
     <string name="common_google_play_services_updating_text"><ns1:g id="app_name">%1$s</ns1:g> won\'t run without Google Play services, which are currently updating.</string>
     <string name="common_google_play_services_updating_title">Google Play services are updating</string>
     <string name="common_open_on_phone">Open on phone</string>
+    <string name="exercise">Exercise:</string>
     <string name="status_bar_notification_info_overflow">999+</string>
     <string name="t_date"><u>Workout Log For: </u></string>
     <string name="weight_hint"><i>lb</i></string>

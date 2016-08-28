@@ -27,7 +27,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.nnsookwon.workout_log.AddNewExercise">
+        <activity android:name="com.nnsookwon.workout_log.AddNewExercise"
+            >
             <intent-filter>
                 <action android:name="com.nnsookwon.ADD_NEW_EXERCISE" />
 

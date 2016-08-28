@@ -24,7 +24,7 @@ public class MyApplication extends AppCompatActivity {
 
     private Button addNewExercise;
 
-    public ExerciseLog exerciseLog;
+    private ExerciseLogDB exerciseLogDB;
     Calendar calendar;
     LinearLayout logEntrySpace;
 
@@ -39,13 +39,11 @@ public class MyApplication extends AppCompatActivity {
 
         log_date.setText(getFormattedDate(calendar));
 
-        exerciseLog = new ExerciseLog(getApplicationContext());
+        exerciseLogDB = new ExerciseLogDB(getApplicationContext());
 
-        //log_exercise = (TextView)findViewById(R.id.log_exercise);
         fillLogEntry(getFormattedDate(calendar), log_date);
-      //  logEntrySpace.
-        ScrollView sv = (ScrollView)findViewById(R.id.scroll);
-                sv.setOnTouchListener(new SwipeGestureListener(MyApplication.this) {
+        ScrollView sv = (ScrollView) findViewById(R.id.scroll);
+        sv.setOnTouchListener(new SwipeGestureListener(MyApplication.this) {
             public void onSwipeLeft() {
                 backDate(null);
             }
@@ -94,17 +92,17 @@ public class MyApplication extends AppCompatActivity {
         mDatePicker.show();
     }
 
-    public ExerciseLog getExerciseLog() {
-        return exerciseLog;
+    public ExerciseLogDB getExerciseLogDB() {
+        return exerciseLogDB;
     }
 
     public void fillLogEntry(String date, TextView tv_date) {
         //fills logEntrySpace to be displayed on main application view
 
         logEntrySpace.removeAllViews();
-        exerciseLog.open();
-        ArrayList<Exercise> exercises = exerciseLog.getLogEntries(date);
-        exerciseLog.close();
+        exerciseLogDB.open();
+        ArrayList<Exercise> exercises = exerciseLogDB.getLogEntries(date);
+        exerciseLogDB.close();
         tv_date.setText(date);
         int id_exercise = 1;
         int id_edit = 10001;
@@ -117,7 +115,7 @@ public class MyApplication extends AppCompatActivity {
             entry.setExercise(exercise);
 
             TextView tv_exerciseSets = (TextView) getLayoutInflater().inflate(R.layout.log_entry_exercise_sets_template, null);
-                      TextView tv_exerciseName = (TextView) getLayoutInflater().inflate(R.layout.log_entry_exercise_name_template, null);
+            TextView tv_exerciseName = (TextView) getLayoutInflater().inflate(R.layout.log_entry_exercise_name_template, null);
             tv_exerciseName.setText(exercise.getExerciseName());
             tv_exerciseSets.setText(exercise.getSetInfo());
 
@@ -126,7 +124,7 @@ public class MyApplication extends AppCompatActivity {
             LinearLayout name_sets = new LinearLayout(MyApplication.this);
             name_sets.setLayoutParams(llParams);
             name_sets.setOrientation(LinearLayout.VERTICAL);
-            name_sets.setPadding(8,0,32,0);
+            name_sets.setPadding(8, 0, 32, 0);
 
             name_sets.addView(tv_exerciseName);
             name_sets.addView(tv_exerciseSets);
@@ -136,7 +134,7 @@ public class MyApplication extends AppCompatActivity {
             ImageButton b_addToEntry = (ImageButton) getLayoutInflater().inflate(R.layout.add_to_entry_template, null);
             b_addToEntry.setId(id_add++);
 
-           llParams = new LinearLayout.LayoutParams(
+            llParams = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
             LinearLayout add_edit = new LinearLayout(MyApplication.this);
@@ -171,13 +169,14 @@ public class MyApplication extends AppCompatActivity {
     }
 
     public void goToAddToEntry(View v) {
-        int id_exercise = (int) (v.getId() - 20000);
+        int id_exercise = (v.getId() - 20000);
         LogEntry entry = (LogEntry) findViewById(id_exercise);
         Bundle bundle = new Bundle();
         bundle.putInt("day", calendar.get(Calendar.DAY_OF_MONTH));
         bundle.putInt("month", calendar.get(Calendar.MONTH));
         bundle.putInt("year", calendar.get(Calendar.YEAR));
         bundle.putString("exerciseName", entry.getExercise().getExerciseName());
+        bundle.putString("category", entry.getExercise().getCategory());
         Intent intent = new Intent(this, AddNewExercise.class);
         intent.putExtras(bundle);
         startActivityForResult(intent, 1);
@@ -186,7 +185,7 @@ public class MyApplication extends AppCompatActivity {
     public void goToEditEntry(View v) {
         //go to EditExercise.class
 
-        int id_exercise = (int) (v.getId() - 10000);
+        int id_exercise = (v.getId() - 10000);
         LogEntry entry = (LogEntry) findViewById(id_exercise);
 
         Intent intent = new Intent(MyApplication.this, EditEntry.class);
