@@ -4,39 +4,34 @@
     api-level="23"
     density="420dpi"
     format="7"
-    timestamp="203514967186236"
+    timestamp="204440375458055"
     token="-4891606476800178743"
     verifier="COMPATIBLE" >
 
     <task
         name="javac"
-        duration="276" />
+        duration="304" />
     <task
         name="instant-run-dex"
-        duration="450" />
+        duration="505" />
     <task
         name="instant-run-transform"
-        duration="48" />
+        duration="142" />
     <task
         name="verifier"
-        duration="4" />
+        duration="12" />
 
     <artifact
         location="C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\intermediates\reload-dex\debug\classes.dex"
         type="RELOAD_DEX" />
 
-    <build timestamp="203054144770157" >
+    <build timestamp="204254418132703" >
         <artifact
             location="C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\outputs\apk\app-debug.apk"
             type="MAIN" />
     </build>
-    <build timestamp="203224632811718" >
-        <artifact
-            location="C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\intermediates\res\resources-debug.ap_"
-            type="RESOURCES" />
-    </build>
     <build
-        timestamp="203514967186236"
+        timestamp="204440375458055"
         verifier="COMPATIBLE" >
         <artifact
             location="C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\intermediates\reload-dex\debug\classes.dex"

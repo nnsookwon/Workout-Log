@@ -194,7 +194,6 @@ public class AddNewExercise extends AppCompatActivity implements AdapterView.OnI
         et_date.setText(nDate);
     }
 
-
     public void chooseDate(View v) {
         //generate DatePickerDialog to choose date for log entry
         int year = calendar.get(Calendar.YEAR);
