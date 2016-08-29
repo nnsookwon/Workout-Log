@@ -29,10 +29,13 @@ public class EditEntry extends AppCompatActivity {
         initExercise();
         exerciseLogDB = new ExerciseLogDB(getApplicationContext());
         table = (TableLayout) findViewById(R.id.table);
-        table.setStretchAllColumns(true);
-        header = (TextView) findViewById(R.id.exercise_history_header);
-        header.setText(exercise.getExerciseName());
+        if (table != null)
+            table.setStretchAllColumns(true);
+//        header = (TextView) findViewById(R.id.exercise_history_header);
+
+        getSupportActionBar().setTitle(exercise.getExerciseName());
         populateETfields();
+
     }
 
     public void initExercise() {

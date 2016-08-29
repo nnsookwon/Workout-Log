@@ -8,27 +8,29 @@
     android:orientation="vertical"
     tools:context="com.nnsookwon.workout_log.EditEntry">
 
-    <TextView
-        android:id="@+id/exercise_history_header"
-        style="@style/Edit_Entry_Header"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 
-    <Button
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
-        android:layout_marginBottom="4dp"
-        android:onClick="deleteEntry"
-        android:text="@string/b_remove_exercise" />
+        android:orientation="horizontal"
+        android:layout_marginBottom="8dp">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="deleteEntry"
+            android:text="@string/b_remove_exercise"
+            android:layout_marginRight="8dp"/>
 
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:onClick="finished"
-        android:text="@string/b_update_exercise" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="finished"
+            android:text="@string/b_update_exercise" />
+
+
+    </LinearLayout>
 
 
     <ScrollView

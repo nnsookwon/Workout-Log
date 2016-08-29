@@ -8,11 +8,11 @@
     style="@style/Screen_Format">
 
 
-    <TextView
+<!--    <TextView
         style="@style/Header_Date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/t_date" />
+        android:text="@string/t_date" />-->
 
     <TextView
         android:id="@+id/date"
@@ -32,16 +32,18 @@
 
         <ImageButton
             android:id="@+id/b_leftArrow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="44dp"
+            android:layout_height="40dp"
             android:onClick="forwardDate"
+            android:layout_centerVertical="true"
             android:src="@drawable/left_arrow" />
 
         <ImageButton
             android:id="@+id/b_rightArrow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="44dp"
+            android:layout_height="40dp"
             android:layout_toRightOf="@id/b_leftArrow"
+            android:layout_centerVertical="true"
             android:onClick="backDate"
             android:src="@drawable/right_arrow" />
 

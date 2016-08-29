@@ -21,7 +21,7 @@ public class ViewExerciseHistory extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_exercise_history);
-        header = (TextView) findViewById(R.id.exercise_history_header);
+//        header = (TextView) findViewById(R.id.exercise_history_header);
         content = (LinearLayout) findViewById(R.id.exercise_history_content);
         exerciseName = "";
 
@@ -32,7 +32,7 @@ public class ViewExerciseHistory extends AppCompatActivity {
             }
         }
 
-        header.setText(exerciseName);
+        getSupportActionBar().setTitle(exerciseName);
         exerciseLog = new ExerciseLogDB(ViewExerciseHistory.this);
         fillExerciseHistory();
     }

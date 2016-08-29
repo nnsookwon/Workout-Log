@@ -4,7 +4,7 @@
     api-level="23"
     density="420dpi"
     format="7"
-    timestamp="233478844800068"
+    timestamp="269172869826724"
     token="-4891606476800178743" >
 
     <task
@@ -24,31 +24,12 @@
         location="C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\intermediates\res\resources-debug.ap_"
         type="RESOURCES" />
 
-    <build timestamp="231570275858544" >
+    <build timestamp="267668046212868" >
         <artifact
             location="C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\outputs\apk\app-debug.apk"
             type="MAIN" />
     </build>
-    <build timestamp="233046591516625" >
-        <artifact
-            location="C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_3\classes.dex"
-            type="DEX" />
-    </build>
-    <build
-        timestamp="233195737528116"
-        verifier="COMPATIBLE" >
-        <artifact
-            location="C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\intermediates\builds\debug\233195737528116\classes.dex"
-            type="RELOAD_DEX" />
-    </build>
-    <build
-        timestamp="233236384271829"
-        verifier="COMPATIBLE" >
-        <artifact
-            location="C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\intermediates\builds\debug\233236384271829\classes.dex"
-            type="RELOAD_DEX" />
-    </build>
-    <build timestamp="233478844800068" >
+    <build timestamp="269172869826724" >
         <artifact
             location="C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\intermediates\res\resources-debug.ap_"
             type="RESOURCES" />

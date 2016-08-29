@@ -55,6 +55,8 @@ public class AddNewExercise extends AppCompatActivity implements AdapterView.OnI
         setContentView(R.layout.add_new_exercise);
         userIsInteracting = false;
 
+        getSupportActionBar().setTitle("Add New Exercise");
+
         exerciseLogDB = new ExerciseLogDB(getApplicationContext());
 
         nExerciseName = "";
