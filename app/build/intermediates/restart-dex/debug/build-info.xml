@@ -4,38 +4,54 @@
     api-level="23"
     density="420dpi"
     format="7"
-    timestamp="204440375458055"
-    token="-4891606476800178743"
-    verifier="COMPATIBLE" >
+    timestamp="233478844800068"
+    token="-4891606476800178743" >
 
     <task
         name="javac"
-        duration="304" />
+        duration="0" />
     <task
         name="instant-run-dex"
-        duration="505" />
+        duration="0" />
     <task
         name="instant-run-transform"
-        duration="142" />
+        duration="0" />
     <task
         name="verifier"
-        duration="12" />
+        duration="0" />
 
     <artifact
-        location="C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\intermediates\reload-dex\debug\classes.dex"
-        type="RELOAD_DEX" />
+        location="C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\intermediates\res\resources-debug.ap_"
+        type="RESOURCES" />
 
-    <build timestamp="204254418132703" >
+    <build timestamp="231570275858544" >
         <artifact
             location="C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\outputs\apk\app-debug.apk"
             type="MAIN" />
     </build>
+    <build timestamp="233046591516625" >
+        <artifact
+            location="C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_3\classes.dex"
+            type="DEX" />
+    </build>
     <build
-        timestamp="204440375458055"
+        timestamp="233195737528116"
         verifier="COMPATIBLE" >
         <artifact
-            location="C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\intermediates\reload-dex\debug\classes.dex"
+            location="C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\intermediates\builds\debug\233195737528116\classes.dex"
             type="RELOAD_DEX" />
+    </build>
+    <build
+        timestamp="233236384271829"
+        verifier="COMPATIBLE" >
+        <artifact
+            location="C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\intermediates\builds\debug\233236384271829\classes.dex"
+            type="RELOAD_DEX" />
+    </build>
+    <build timestamp="233478844800068" >
+        <artifact
+            location="C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\intermediates\res\resources-debug.ap_"
+            type="RESOURCES" />
     </build>
 
 </instant-run>

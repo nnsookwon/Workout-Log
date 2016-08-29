@@ -11,20 +11,19 @@ import java.util.ArrayList;
  */
 public class Exercise {
     private ArrayList<double[]> sets; //one set is {weight, reps}
-    private String date;
-    private String exerciseName;
-    private String category;
-
+    private String date, dateSort, exerciseName, category;
 
     public Exercise() {
         date = "";
+        dateSort = "";
         exerciseName = "";
-        category ="";
+        category = "";
         sets = new ArrayList<double[]>();
     }
 
-    public Exercise(String nDate, String nExerciseName, String nCategory) {
+    public Exercise(String nDate, String nDateSort, String nExerciseName, String nCategory) {
         date = nDate;
+        dateSort = nDateSort;
         exerciseName = nExerciseName;
         category = nCategory;
         sets = new ArrayList<double[]>();
@@ -38,11 +37,11 @@ public class Exercise {
         return exerciseName;
     }
 
-    public void setCatgory (String nCategory){
+    public void setCatgory(String nCategory) {
         category = nCategory;
     }
 
-    public String getCategory(){
+    public String getCategory() {
         return category;
     }
 
@@ -78,6 +77,14 @@ public class Exercise {
         return date;
     }
 
+    public void setDateSort(String d){
+        dateSort = d;
+    }
+
+    public String getDateSort(){
+        return dateSort;
+    }
+
     public ArrayList<double[]> getSetList() {
         return sets;
     }
@@ -101,12 +108,12 @@ public class Exercise {
         int i = 1;
         for (double[] set : sets) {
             result += set[0] + "\tlb.\t\tX\t\t" + (int) set[1] + "\t\t";
-            if (set[1]>1)
-                result+= "reps";
+            if (set[1] > 1)
+                result += "reps";
             else
-                result+="rep  ";
-                //extra space to light up with "reps"
-            if (i++<sets.size())
+                result += "rep  ";
+            //extra space to light up with "reps"
+            if (i++ < sets.size())
                 result += "\n";
         }
         return result;

@@ -21,7 +21,7 @@ public class ExerciseLogDB {
     public ExerciseLogDB(Context c) {
         ourContext = c;
         open();
-        columns = new String[]{DbHelper.KEY_ROWID, DbHelper.KEY_DATE,
+        columns = new String[]{DbHelper.KEY_ROWID, DbHelper.KEY_DATE, DbHelper.KEY_DATE_SORT,
                 DbHelper.KEY_EXERCISE, DbHelper.KEY_CATEGORY, DbHelper.KEY_SETS};
         close();
     }
@@ -40,6 +40,7 @@ public class ExerciseLogDB {
     public void createEntry(Exercise exercise) {
         ContentValues cv = new ContentValues();
         cv.put(DbHelper.KEY_DATE, exercise.getDate());
+        cv.put(DbHelper.KEY_DATE_SORT, exercise.getDateSort());
         cv.put(DbHelper.KEY_EXERCISE, exercise.getExerciseName());
         cv.put(DbHelper.KEY_CATEGORY, exercise.getCategory());
         cv.put(DbHelper.KEY_SETS, exercise.arrayListToJsonString());
@@ -88,6 +89,7 @@ public class ExerciseLogDB {
                 DbHelper.KEY_DATE + " = ?", new String[]{date}, null, null, null, null);
 
         int iDate = c.getColumnIndex(DbHelper.KEY_DATE);
+        int iDateSort = c.getColumnIndex(DbHelper.KEY_DATE_SORT);
         int iExercise = c.getColumnIndex(DbHelper.KEY_EXERCISE);
         int iCategory = c.getColumnIndex(DbHelper.KEY_CATEGORY);
         int iSet = c.getColumnIndex(DbHelper.KEY_SETS);
@@ -95,7 +97,39 @@ public class ExerciseLogDB {
         Exercise exercise;
         ArrayList<double[]> sets;
         for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
-            exercise = new Exercise(c.getString(iDate), c.getString(iExercise), c.getString(iCategory));
+            exercise = new Exercise(c.getString(iDate), c.getString(iDateSort),
+                    c.getString(iExercise), c.getString(iCategory));
+            sets = Exercise.jsonStringToArrayList(c.getString(iSet));
+            for (double[] set : sets) {
+                exercise.addNewSet(set[0], set[1]);
+            }
+            exercises.add(exercise);
+        }
+        return exercises;
+    }
+
+    public ArrayList<Exercise> getExerciseHistory(String exerciseName) {
+        //returns ArrayList a particular exercise, starting with the most recent
+        //to see progress of performance in gym
+
+        ArrayList<Exercise> exercises = new ArrayList<Exercise>();
+
+        Cursor c = ourDataBase.rawQuery("SELECT * FROM " +
+                DbHelper.DATABASE_TABLE_LOG_ENTRIES +
+                " WHERE " + DbHelper.KEY_EXERCISE + " = \"" + exerciseName + "\"" +
+                " ORDER BY date(" + DbHelper.KEY_DATE_SORT + ") DESC", null);
+
+        int iDate = c.getColumnIndex(DbHelper.KEY_DATE);
+        int iDateSort = c.getColumnIndex(DbHelper.KEY_DATE_SORT);
+        int iExercise = c.getColumnIndex(DbHelper.KEY_EXERCISE);
+        int iCategory = c.getColumnIndex(DbHelper.KEY_CATEGORY);
+        int iSet = c.getColumnIndex(DbHelper.KEY_SETS);
+
+        Exercise exercise;
+        ArrayList<double[]> sets;
+        for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+            exercise = new Exercise(c.getString(iDate), c.getString(iDateSort),
+                    c.getString(iExercise), c.getString(iCategory));
             sets = Exercise.jsonStringToArrayList(c.getString(iSet));
             for (double[] set : sets) {
                 exercise.addNewSet(set[0], set[1]);
@@ -116,7 +150,7 @@ public class ExerciseLogDB {
         return c.getCount() != 0;
     }
 
-    public void addSet(Exercise exercise){
+    public void addSet(Exercise exercise) {
         //pre-condition: dateHasExercise(date, exerciseName) returned true
         //updates Json String in database to add new set
 

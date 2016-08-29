@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.nnsookwon.workout_log.MyApplication"
+    style="@style/Screen_Format">
+
+
+    <TextView
+        style="@style/Header_Date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/t_date" />
+
+    <TextView
+        android:id="@+id/date"
+        style="@style/Header_Date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:text=""
+        android:clickable="true"
+        android:onClick="jumpToDate"/>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp">
+
+        <ImageButton
+            android:id="@+id/b_leftArrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="forwardDate"
+            android:src="@drawable/left_arrow" />
+
+        <ImageButton
+            android:id="@+id/b_rightArrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/b_leftArrow"
+            android:onClick="backDate"
+            android:src="@drawable/right_arrow" />
+
+        <Button
+            style="@style/B_Add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="right"
+            android:onClick="goToAddExercise"
+            android:text="@string/b_add_exercise" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="24dp"
+        android:fillViewport="true"
+        android:id="@+id/scroll">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+             android:id="@+id/log_entries">
+
+
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

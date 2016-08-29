@@ -11,6 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
     public static final String KEY_ROWID = "_id";
     public static final String KEY_DATE = "date";
+    public static final String KEY_DATE_SORT = "date_sort";
     public static final String KEY_CATEGORY = "category";
     public static final String KEY_EXERCISE = "exercise";
     public static final String KEY_SETS = "sets";
@@ -33,6 +34,7 @@ import android.database.sqlite.SQLiteOpenHelper;
         db.execSQL("CREATE TABLE " + DATABASE_TABLE_LOG_ENTRIES + " (" +
                 KEY_ROWID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 KEY_DATE + " TEXT NOT NULL, " +
+                KEY_DATE_SORT + " TEXT NOT NULL, " +
                 KEY_EXERCISE + " TEXT NOT NULL, " +
                 KEY_CATEGORY + " TEXT NOT NULL, " +
                 KEY_SETS + " TEXT NOT NULL);");

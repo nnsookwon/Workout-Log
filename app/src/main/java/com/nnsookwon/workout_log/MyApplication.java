@@ -4,6 +4,8 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.PopupMenu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -105,8 +107,13 @@ public class MyApplication extends AppCompatActivity {
         exerciseLogDB.close();
         tv_date.setText(date);
         int id_exercise = 1;
-        int id_edit = 10001;
-        int id_add = 20001;
+        int id_options = 100001;
+
+        TextView tv_exerciseSets;
+        TextView tv_exerciseName;
+        LinearLayout.LayoutParams llParams;
+        LinearLayout name_sets;
+        ImageButton b_menu_options;
 
         for (Exercise exercise : exercises) {
 
@@ -114,14 +121,14 @@ public class MyApplication extends AppCompatActivity {
             entry.setId(id_exercise++);
             entry.setExercise(exercise);
 
-            TextView tv_exerciseSets = (TextView) getLayoutInflater().inflate(R.layout.log_entry_exercise_sets_template, null);
-            TextView tv_exerciseName = (TextView) getLayoutInflater().inflate(R.layout.log_entry_exercise_name_template, null);
+            tv_exerciseSets = (TextView) getLayoutInflater().inflate(R.layout.log_entry_exercise_sets_template, null);
+            tv_exerciseName = (TextView) getLayoutInflater().inflate(R.layout.log_entry_exercise_name_template, null);
             tv_exerciseName.setText(exercise.getExerciseName());
             tv_exerciseSets.setText(exercise.getSetInfo());
 
-            LinearLayout.LayoutParams llParams = new LinearLayout.LayoutParams(
+            llParams = new LinearLayout.LayoutParams(
                     0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
-            LinearLayout name_sets = new LinearLayout(MyApplication.this);
+            name_sets = new LinearLayout(MyApplication.this);
             name_sets.setLayoutParams(llParams);
             name_sets.setOrientation(LinearLayout.VERTICAL);
             name_sets.setPadding(8, 0, 32, 0);
@@ -129,27 +136,20 @@ public class MyApplication extends AppCompatActivity {
             name_sets.addView(tv_exerciseName);
             name_sets.addView(tv_exerciseSets);
 
-            ImageButton b_editEntry = (ImageButton) getLayoutInflater().inflate(R.layout.edit_entry_template, null);
-            b_editEntry.setId(id_edit++);
-            ImageButton b_addToEntry = (ImageButton) getLayoutInflater().inflate(R.layout.add_to_entry_template, null);
-            b_addToEntry.setId(id_add++);
+            b_menu_options = (ImageButton) getLayoutInflater().inflate(R.layout.menu_options_template, null);
+            b_menu_options.setId(id_options++);
 
             llParams = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
-            LinearLayout add_edit = new LinearLayout(MyApplication.this);
-            add_edit.setLayoutParams(llParams);
-            add_edit.setOrientation(LinearLayout.VERTICAL);
-
-            add_edit.addView(b_addToEntry);
-            add_edit.addView(b_editEntry);
+            b_menu_options.setLayoutParams(llParams);
 
             llParams = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
             entry.setLayoutParams(llParams);
             entry.addView(name_sets);
-            entry.addView(add_edit);
+            entry.addView(b_menu_options);
 
             llParams.setMargins(0, 16, 0, 16);
             logEntrySpace.addView(entry, llParams);
@@ -168,34 +168,61 @@ public class MyApplication extends AppCompatActivity {
         startActivityForResult(intent, 1);
     }
 
-    public void goToAddToEntry(View v) {
-        int id_exercise = (v.getId() - 20000);
+    public void menuItemClicked(View v, MenuItem item) {
+        int id_exercise = (v.getId() - 100000);
         LogEntry entry = (LogEntry) findViewById(id_exercise);
         Bundle bundle = new Bundle();
         bundle.putInt("day", calendar.get(Calendar.DAY_OF_MONTH));
         bundle.putInt("month", calendar.get(Calendar.MONTH));
         bundle.putInt("year", calendar.get(Calendar.YEAR));
-        bundle.putString("exerciseName", entry.getExercise().getExerciseName());
-        bundle.putString("category", entry.getExercise().getCategory());
-        Intent intent = new Intent(this, AddNewExercise.class);
-        intent.putExtras(bundle);
-        startActivityForResult(intent, 1);
+        if (entry != null && entry.getExercise() != null) {
+            bundle.putString("exerciseName", entry.getExercise().getExerciseName());
+            bundle.putString("date", entry.getExercise().getDate());
+            bundle.putString("category", entry.getExercise().getCategory());
+            bundle.putString("sets", entry.getExercise().arrayListToJsonString());
+        }
+
+        Intent intent;
+        switch (item.getItemId()) {
+            case R.id.b_addMore:
+                intent = new Intent(MyApplication.this, AddNewExercise.class);
+                intent.putExtras(bundle);
+                startActivityForResult(intent, 1);
+                break;
+            case R.id.b_edit:
+                intent = new Intent(MyApplication.this, EditEntry.class);
+                intent.putExtras(bundle);
+                startActivityForResult(intent, 1);
+                break;
+            case R.id.b_view_history:
+                intent = new Intent(MyApplication.this, ViewExerciseHistory.class);
+                intent.putExtras(bundle);
+                startActivityForResult(intent, 1);
+                break;
+        }
     }
 
-    public void goToEditEntry(View v) {
-        //go to EditExercise.class
+    public void showMenuOptions(View v) {
+        final View view = v;
+        PopupMenu popupMenu = new PopupMenu(MyApplication.this, v);
+        popupMenu.getMenuInflater().inflate(R.menu.menu_options, popupMenu.getMenu());
 
-        int id_exercise = (v.getId() - 10000);
-        LogEntry entry = (LogEntry) findViewById(id_exercise);
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.b_addMore:
+                    case R.id.b_edit:
+                    case R.id.b_view_history:
+                        menuItemClicked(view,item);
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+        });
 
-        Intent intent = new Intent(MyApplication.this, EditEntry.class);
-        Bundle bundle = new Bundle();
-        bundle.putString("date", entry.getExercise().getDate());
-        bundle.putString("exerciseName", entry.getExercise().getExerciseName());
-        bundle.putString("sets", entry.getExercise().arrayListToJsonString());
-        intent.putExtras(bundle);
-        startActivityForResult(intent, 1);
-
+        popupMenu.show();
 
     }
 

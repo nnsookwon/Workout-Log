@@ -30,7 +30,7 @@ public class EditEntry extends AppCompatActivity {
         exerciseLogDB = new ExerciseLogDB(getApplicationContext());
         table = (TableLayout) findViewById(R.id.table);
         table.setStretchAllColumns(true);
-        header = (TextView) findViewById(R.id.tv_header);
+        header = (TextView) findViewById(R.id.exercise_history_header);
         header.setText(exercise.getExerciseName());
         populateETfields();
     }

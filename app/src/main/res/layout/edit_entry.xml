@@ -9,7 +9,7 @@
     tools:context="com.nnsookwon.workout_log.EditEntry">
 
     <TextView
-        android:id="@+id/tv_header"
+        android:id="@+id/exercise_history_header"
         style="@style/Edit_Entry_Header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

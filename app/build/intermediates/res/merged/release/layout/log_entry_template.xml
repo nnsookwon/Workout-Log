@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.nnsookwon.workout_log.LogEntry xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Log_Entry">
+
+</com.nnsookwon.workout_log.LogEntry>

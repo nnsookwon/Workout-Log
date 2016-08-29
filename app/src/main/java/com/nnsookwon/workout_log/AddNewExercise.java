@@ -28,7 +28,7 @@ import java.util.Locale;
  */
 public class AddNewExercise extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    private String nDate, nExerciseName, nCategory;
+    private String nDate, nDateSort, nExerciseName, nCategory;
 
     private EditText et_date, et_weight, et_reps;
     private ExerciseLogDB exerciseLogDB;
@@ -191,6 +191,7 @@ public class AddNewExercise extends AppCompatActivity implements AdapterView.OnI
 
         }
         nDate = new SimpleDateFormat("MMMM dd, yyyy", Locale.US).format(calendar.getTime());
+        nDateSort = new SimpleDateFormat("yyyy-MM-dd", Locale.US).format(calendar.getTime());
         et_date.setText(nDate);
     }
 
@@ -206,6 +207,7 @@ public class AddNewExercise extends AppCompatActivity implements AdapterView.OnI
 
                         calendar.set(y, m, d);
                         nDate = new SimpleDateFormat("MMMM dd, yyyy", Locale.US).format(calendar.getTime());
+                        nDateSort = new SimpleDateFormat("yyyy-MM-dd", Locale.US).format(calendar.getTime());
                         et_date.setText(nDate);
                     }
                 }, year, month, day);
@@ -226,7 +228,7 @@ public class AddNewExercise extends AppCompatActivity implements AdapterView.OnI
                 et_reps.getText().toString().isEmpty())) {
             //user can only create entry if all fields are filled
 
-            Exercise exercise = new Exercise(nDate, nExerciseName, nCategory);
+            Exercise exercise = new Exercise(nDate, nDateSort, nExerciseName, nCategory);
             exercise.addNewSet(Double.parseDouble(et_weight.getText().toString()),
                     Double.parseDouble(et_reps.getText().toString()));
 

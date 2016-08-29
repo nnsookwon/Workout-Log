@@ -46,8 +46,16 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity android:name="com.nnsookwon.workout_log.ViewExerciseHistory" >
+            <intent-filter>
+                <action android:name="com.nnsookwon.VIEW_EXERCISE_HISTORY" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
         <!--
- ATTENTION: This was auto-generated to add Google Play services to your project for
+     ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
         -->
         <meta-data
