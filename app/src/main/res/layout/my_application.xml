@@ -8,12 +8,6 @@
     tools:context="com.nnsookwon.workout_log.MyApplication">
 
 
-    <!--    <TextView
-            style="@style/Header_Date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/t_date" />-->
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -63,7 +57,7 @@
     <ScrollView
         android:id="@+id/scroll"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:fillViewport="true">
 
 
