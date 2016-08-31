@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Screen_Format"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.nnsookwon.workout_log.MyApplication">
+
+
+    <!--    <TextView
+            style="@style/Header_Date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/t_date" />-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <ImageButton
+            android:id="@+id/b_leftArrow"
+            android:layout_width="44dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:background="@android:color/transparent"
+            android:onClick="forwardDate"
+            android:src="@drawable/left_arrow" />
+
+        <TextView
+            android:id="@+id/date"
+            style="@style/Header_Date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:onClick="jumpToDate"
+            android:gravity="center"
+            android:text="" />
+
+
+        <ImageButton
+            android:id="@+id/b_rightArrow"
+            android:layout_width="44dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:background="@android:color/transparent"
+            android:onClick="backDate"
+            android:src="@drawable/right_arrow" />
+
+
+    </LinearLayout>
+
+    <Button
+        style="@style/B_Add"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:onClick="goToAddExercise"
+        android:text="Add new exercise"/>
+
+
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
+
+
+        <LinearLayout
+            android:id="@+id/log_entries"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
