@@ -11,7 +11,9 @@
 
         <activity
             android:name="com.nnsookwon.workout_log.SplashActivity"
-            android:theme="@style/Splash_Theme">>
+            android:theme="@style/Splash_Theme"
+            android:screenOrientation="nosensor">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,7 +21,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.nnsookwon.workout_log.MyApplication">
+        <activity
+            android:name="com.nnsookwon.workout_log.MyApplication"
+            android:screenOrientation="nosensor">
             <intent-filter>
                 <action android:name="com.nnsookwon.APPLICATION" />
 
@@ -27,7 +31,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.nnsookwon.workout_log.AddNewExercise">
+        <activity
+            android:name="com.nnsookwon.workout_log.AddNewExercise"
+            android:screenOrientation="nosensor">
             <intent-filter>
                 <action android:name="com.nnsookwon.ADD_NEW_EXERCISE" />
 
@@ -35,7 +41,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.nnsookwon.workout_log.EditEntry">
+        <activity
+            android:name="com.nnsookwon.workout_log.EditEntry"
+            android:screenOrientation="nosensor">
             <intent-filter>
                 <action android:name="com.nnsookwon.EDIT_ENTRY" />
 
@@ -43,7 +51,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.nnsookwon.workout_log.ViewExerciseHistory">
+        <activity
+            android:name="com.nnsookwon.workout_log.ViewExerciseHistory"
+            android:screenOrientation="nosensor">
             <intent-filter>
                 <action android:name="com.nnsookwon.VIEW_EXERCISE_HISTORY" />
 

@@ -1899,8 +1899,8 @@ containing a value of this type.
         public static final int common_google_play_services_updating_title=0x7f06002f;
         public static final int common_open_on_phone=0x7f060030;
         public static final int exercise=0x7f06003a;
+        public static final int motivator=0x7f06003b;
         public static final int status_bar_notification_info_overflow=0x7f060031;
-        public static final int t_date=0x7f06003b;
         public static final int weight_hint=0x7f06003c;
     }
     public static final class style {

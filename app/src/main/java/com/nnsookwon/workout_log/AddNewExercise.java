@@ -5,17 +5,24 @@ import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
+import android.text.SpannableStringBuilder;
+import android.text.style.StyleSpan;
+import android.text.style.UnderlineSpan;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
@@ -28,7 +35,7 @@ import java.util.Locale;
  */
 public class AddNewExercise extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    private String nDate, nDateSort, nExerciseName, nCategory;
+    private String date, dateSort, exerciseName, category;
 
     private EditText et_date, et_weight, et_reps;
     private ExerciseLogDB exerciseLogDB;
@@ -62,9 +69,10 @@ public class AddNewExercise extends AppCompatActivity implements AdapterView.OnI
         getSupportActionBar().setTitle("Add New Exercise");
 
         exerciseLogDB = new ExerciseLogDB(getApplicationContext());
+        exerciseLogDB.open();
 
-        nExerciseName = "";
-        nCategory = "";
+        exerciseName = "";
+        category = "";
 
         exercisesDB = new ExercisesDB(getApplicationContext());
         exercisesDB.open();
@@ -86,21 +94,24 @@ public class AddNewExercise extends AppCompatActivity implements AdapterView.OnI
         initFields();
     }
 
-    public void initETfields(){
-        et_weight.setOnClickListener(new View.OnClickListener() {
+    public void initETfields() {
+        et_weight.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View v) {
-                hasChangedWeight=true;
+            public boolean onTouch(View v, MotionEvent event) {
+                hasChangedWeight = true;
+                return false;
             }
         });
 
-        et_reps.setOnClickListener(new View.OnClickListener() {
+        et_reps.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View v) {
-                hasChangedReps=true;
+            public boolean onTouch(View v, MotionEvent event) {
+                hasChangedReps = true;
+                return false;
             }
         });
     }
+
     public void initSpinners() {
         categories = exercisesDB.getCategories();
         adapterCategories = new ArrayAdapter<String>(AddNewExercise.this,
@@ -121,7 +132,7 @@ public class AddNewExercise extends AppCompatActivity implements AdapterView.OnI
     }
 
     public void updateExerciseSpinner() {
-        exercises = exercisesDB.getExercises(nCategory);
+        exercises = exercisesDB.getExercises(category);
         adapterExercises = new ArrayAdapter<String>(AddNewExercise.this,
                 android.R.layout.simple_spinner_item, exercises);
         adapterExercises.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -134,7 +145,7 @@ public class AddNewExercise extends AppCompatActivity implements AdapterView.OnI
             switch (av.getId()) {
                 case R.id.sp_categories:
                     pos = sp_categories.getSelectedItemPosition();
-                    nCategory = categories.get(pos);
+                    category = categories.get(pos);
                     updateExerciseSpinner();
                     sp_exercises.performClick();
                     break;
@@ -142,8 +153,10 @@ public class AddNewExercise extends AppCompatActivity implements AdapterView.OnI
                     pos = sp_exercises.getSelectedItemPosition();
                     if (pos == 1)
                         addOption();
-                    else
-                        nExerciseName = exercises.get(pos);
+                    else {
+                        exerciseName = exercises.get(pos);
+                        motivate();
+                    }
                     break;
             }
         }
@@ -170,7 +183,7 @@ public class AddNewExercise extends AppCompatActivity implements AdapterView.OnI
                 if (newExercise.length() > 0) {
                     //input must be more than just spaces
 
-                    if (!exercisesDB.createEntry(nCategory, newExercise))
+                    if (!exercisesDB.createEntry(category, newExercise))
                         Toast.makeText(AddNewExercise.this, "Exercise already exists", Toast.LENGTH_SHORT).show();
 
                     updateExerciseSpinner();
@@ -210,23 +223,23 @@ public class AddNewExercise extends AppCompatActivity implements AdapterView.OnI
                 calendar.set(bundle.getInt("year"), bundle.getInt("month"), bundle.getInt("day"));
 
             if (bundle.containsKey("category")) {
-                nCategory = bundle.getString("category");
-                sp_categories.setSelection(categories.indexOf(nCategory));
+                category = bundle.getString("category");
+                sp_categories.setSelection(categories.indexOf(category));
                 updateExerciseSpinner();
             }
             if (bundle.containsKey("exerciseName")) {
-                nExerciseName = bundle.getString("exerciseName");
-                int pos = exercises.indexOf(nExerciseName);
+                exerciseName = bundle.getString("exerciseName");
+                int pos = exercises.indexOf(exerciseName);
                 sp_exercises.setSelection(pos, true);
-                Log.e("TAG", "" + sp_exercises.getSelectedItem().toString().equals(nExerciseName));
+                Log.e("TAG", "" + sp_exercises.getSelectedItem().toString().equals(exerciseName));
                 Log.e("TAG", "" + sp_exercises.getSelectedItem().toString());
 
             }
 
         }
-        nDate = new SimpleDateFormat("MMMM dd, yyyy", Locale.US).format(calendar.getTime());
-        nDateSort = new SimpleDateFormat("yyyy-MM-dd", Locale.US).format(calendar.getTime());
-        et_date.setText(nDate);
+        date = new SimpleDateFormat("MMMM dd, yyyy", Locale.US).format(calendar.getTime());
+        dateSort = new SimpleDateFormat("yyyy-MM-dd", Locale.US).format(calendar.getTime());
+        et_date.setText(date);
     }
 
     public void chooseDate(View v) {
@@ -240,9 +253,9 @@ public class AddNewExercise extends AppCompatActivity implements AdapterView.OnI
                     public void onDateSet(DatePicker datepicker, int y, int m, int d) {
 
                         calendar.set(y, m, d);
-                        nDate = new SimpleDateFormat("MMMM dd, yyyy", Locale.US).format(calendar.getTime());
-                        nDateSort = new SimpleDateFormat("yyyy-MM-dd", Locale.US).format(calendar.getTime());
-                        et_date.setText(nDate);
+                        date = new SimpleDateFormat("MMMM dd, yyyy", Locale.US).format(calendar.getTime());
+                        dateSort = new SimpleDateFormat("yyyy-MM-dd", Locale.US).format(calendar.getTime());
+                        et_date.setText(date);
                     }
                 }, year, month, day);
         mDatePicker.setTitle("Select date");
@@ -262,17 +275,16 @@ public class AddNewExercise extends AppCompatActivity implements AdapterView.OnI
                 et_reps.getText().toString().isEmpty())) {
             //user can only create entry if all fields are filled
 
-            Exercise exercise = new Exercise(nDate, nDateSort, nExerciseName, nCategory);
+            Exercise exercise = new Exercise(date, dateSort, exerciseName, category);
             exercise.addNewSet(Double.parseDouble(et_weight.getText().toString()),
                     Double.parseDouble(et_reps.getText().toString()));
 
-            exerciseLogDB.open();
+
             if (exerciseLogDB.dateHasExercise(exercise)) {
                 exerciseLogDB.addSet(exercise);
             } else {
                 exerciseLogDB.createEntry(exercise);
             }
-            exerciseLogDB.close();
 
             Toast.makeText(AddNewExercise.this, "Added to log", Toast.LENGTH_SHORT).show();
 
@@ -281,56 +293,95 @@ public class AddNewExercise extends AppCompatActivity implements AdapterView.OnI
 
     }
 
-    public void incrementWeight(View v){
-        if (hasChangedWeight){
+    public void incrementWeight(View v) {
+        if (hasChangedWeight) {
             try {
                 weight = Double.parseDouble(et_weight.getText().toString());
-            }catch (NumberFormatException e){
-
+            } catch (NumberFormatException e) {
+                Log.d("Parse Exception", "Field blank");
             }
-        }
+        }else
+            hasChangedWeight=false;
         weight += incrementWeight;
-        et_weight.setText(""+weight);
+        et_weight.setText(String.valueOf(weight));
     }
 
-    public void decrementWeight(View v){
-        if (hasChangedWeight){
+    public void decrementWeight(View v) {
+        if (hasChangedWeight) {
             try {
                 weight = Double.parseDouble(et_weight.getText().toString());
-            }catch (NumberFormatException e){
-
+            } catch (NumberFormatException e) {
+                Log.d("Parse Exception", "Field blank");
             }
-        }
+        }else
+            hasChangedWeight=false;
         weight -= incrementWeight;
-        et_weight.setText(""+weight);
+        weight = weight < 0 ? 0: weight;
+        et_weight.setText(String.valueOf(weight));
     }
 
-    public void incrementRep(View v){
-        if (hasChangedReps){
+    public void incrementRep(View v) {
+        if (hasChangedReps) {
             try {
-                reps = Integer.parseInt(et_weight.getText().toString());
-            }catch (NumberFormatException e){
-
+                reps = Integer.parseInt(et_reps.getText().toString());
+            } catch (NumberFormatException e) {
+                Log.d("Parse Exception", "Field blank");
             }
-        }
+        }else
+            hasChangedReps=false;
         reps += incrementRep;
-        et_reps.setText(""+reps);
+        et_reps.setText(String.valueOf(reps));
     }
 
-    public void decrementRep(View v){
-        if (hasChangedReps){
+    public void decrementRep(View v) {
+        if (hasChangedReps) {
             try {
-                reps = Integer.parseInt(et_weight.getText().toString());
-            }catch (NumberFormatException e){
-
+                reps = Integer.parseInt(et_reps.getText().toString());
+                Log.e("Clicked on field","Yes");
+            } catch (NumberFormatException e) {
+                Log.d("Parse Exception", "Field blank");
             }
-        }
+        }else
+            hasChangedReps=false;
         reps -= incrementRep;
-        et_reps.setText(""+reps);
+        reps = reps < 0 ? 0: reps;
+        et_reps.setText(String.valueOf(reps));
+    }
+
+    public void motivate() {
+        try {
+            ArrayList<Exercise> exercises = exerciseLogDB.getExerciseHistory(exerciseName, 0, 2);
+            Exercise exercise = exercises.get(0);
+            if (exercise.getDate().equals(date))
+                exercise = exercises.get(1);
+            //Don't show today's entry, get the previous workout
+
+            Toast toast = Toast.makeText(AddNewExercise.this, "", Toast.LENGTH_LONG);
+
+            SpannableStringBuilder stringBuilder = new SpannableStringBuilder();
+            String header = getString(R.string.motivator);
+            stringBuilder.append(header);
+            stringBuilder.setSpan(new UnderlineSpan(), 0, header.length(), 0);
+            stringBuilder.setSpan(new StyleSpan(Typeface.BOLD_ITALIC), 0, header.length(), 0);
+            stringBuilder.append("\n").append( exercise.getSetInfo());
+
+            TextView tv = (TextView) toast.getView().findViewById(android.R.id.message);
+
+            if (tv != null) {
+                tv.setText(stringBuilder);
+
+                tv.setGravity(Gravity.RIGHT);
+            }
+            toast.show();
+        } catch (IndexOutOfBoundsException e) {
+            Log.d("IndexOutOfBounds", "exercise not found in database");
+        }
+
     }
 
     public void exitAddNewExercise(View v) {
         //return back to MyApplication
+        exerciseLogDB.close();
         exercisesDB.close();
         Intent returnIntent = new Intent();
         setResult(Activity.RESULT_OK, returnIntent);
@@ -342,9 +393,10 @@ public class AddNewExercise extends AppCompatActivity implements AdapterView.OnI
         userIsInteracting = true;
     }
 
-    public void onBackPressed() {
+    public void onPause() {
+        exerciseLogDB.close();
         exercisesDB.close();
-        super.onBackPressed();
+        super.onPause();
     }
 }
 

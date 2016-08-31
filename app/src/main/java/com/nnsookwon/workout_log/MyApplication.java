@@ -35,7 +35,7 @@ public class MyApplication extends AppCompatActivity {
         calendar = Calendar.getInstance();
         log_date = (TextView) findViewById(R.id.date);
 
-        log_date.setText(getFormattedDate(calendar));
+        log_date.setText(getShortDate(calendar));
 
         exerciseLogDB = new ExerciseLogDB(getApplicationContext());
 
@@ -56,7 +56,12 @@ public class MyApplication extends AppCompatActivity {
     public String getFormattedDate(Calendar cal) {
 
         return new SimpleDateFormat("MMMM dd, yyyy", Locale.US).format(cal.getTime());
+    }
 
+    public String getShortDate(Calendar cal){
+        //returns formatted date without the year
+        String str = getFormattedDate(cal);
+        return str.substring(0, str.length()-6);
     }
 
     public void refreshDateStrings(){
@@ -119,7 +124,7 @@ public class MyApplication extends AppCompatActivity {
         else if (date.equals(dateYesterday))
             tv_date.setText("Yesterday");
         else
-            tv_date.setText(date);
+            tv_date.setText(getShortDate(calendar));
         int id_exercise = 1;
         int id_options = 100001;
 

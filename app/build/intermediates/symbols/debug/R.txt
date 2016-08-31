@@ -701,8 +701,8 @@ int string common_google_play_services_updating_text 0x7f06002e
 int string common_google_play_services_updating_title 0x7f06002f
 int string common_open_on_phone 0x7f060030
 int string exercise 0x7f06003a
+int string motivator 0x7f06003b
 int string status_bar_notification_info_overflow 0x7f060031
-int string t_date 0x7f06003b
 int string weight_hint 0x7f06003c
 int style AlertDialog_AppCompat 0x7f090086
 int style AlertDialog_AppCompat_Light 0x7f090087

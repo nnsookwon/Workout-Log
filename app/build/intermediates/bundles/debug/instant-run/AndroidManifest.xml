@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.nnsookwon.weight_liftinglog"
-    android:versionCode="4"
-    android:versionName="1.3" >
+    android:versionCode="5"
+    android:versionName="1.3.1" >
 
     <uses-sdk
         android:minSdkVersion="19"
@@ -17,36 +17,44 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.nnsookwon.workout_log.SplashActivity"
+            android:screenOrientation="nosensor"
             android:theme="@style/Splash_Theme" >
->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.nnsookwon.workout_log.MyApplication" >
+        <activity
+            android:name="com.nnsookwon.workout_log.MyApplication"
+            android:screenOrientation="nosensor" >
             <intent-filter>
                 <action android:name="com.nnsookwon.APPLICATION" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="com.nnsookwon.workout_log.AddNewExercise" >
+        <activity
+            android:name="com.nnsookwon.workout_log.AddNewExercise"
+            android:screenOrientation="nosensor" >
             <intent-filter>
                 <action android:name="com.nnsookwon.ADD_NEW_EXERCISE" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="com.nnsookwon.workout_log.EditEntry" >
+        <activity
+            android:name="com.nnsookwon.workout_log.EditEntry"
+            android:screenOrientation="nosensor" >
             <intent-filter>
                 <action android:name="com.nnsookwon.EDIT_ENTRY" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="com.nnsookwon.workout_log.ViewExerciseHistory" >
+        <activity
+            android:name="com.nnsookwon.workout_log.ViewExerciseHistory"
+            android:screenOrientation="nosensor" >
             <intent-filter>
                 <action android:name="com.nnsookwon.VIEW_EXERCISE_HISTORY" />
 

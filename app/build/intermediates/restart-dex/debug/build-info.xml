@@ -4,35 +4,30 @@
     api-level="23"
     density="420dpi"
     format="7"
-    timestamp="39129602114666"
+    timestamp="104805562170222"
     token="-4891606476800178743" >
 
     <task
         name="javac"
-        duration="0" />
+        duration="1019" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="0" />
+        duration="225" />
     <task
         name="verifier"
-        duration="0" />
+        duration="70" />
 
     <artifact
-        location="C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\intermediates\res\resources-debug.ap_"
-        type="RESOURCES" />
+        location="C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\outputs\apk\app-debug.apk"
+        type="MAIN" />
 
-    <build timestamp="39066015764888" >
+    <build timestamp="104805562170222" >
         <artifact
             location="C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\outputs\apk\app-debug.apk"
             type="MAIN" />
-    </build>
-    <build timestamp="39129602114666" >
-        <artifact
-            location="C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\intermediates\res\resources-debug.ap_"
-            type="RESOURCES" />
     </build>
 
 </instant-run>

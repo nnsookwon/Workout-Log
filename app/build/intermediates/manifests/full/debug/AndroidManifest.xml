@@ -16,36 +16,44 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.nnsookwon.workout_log.SplashActivity"
+            android:screenOrientation="nosensor"
             android:theme="@style/Splash_Theme" >
->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.nnsookwon.workout_log.MyApplication" >
+        <activity
+            android:name="com.nnsookwon.workout_log.MyApplication"
+            android:screenOrientation="nosensor" >
             <intent-filter>
                 <action android:name="com.nnsookwon.APPLICATION" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="com.nnsookwon.workout_log.AddNewExercise" >
+        <activity
+            android:name="com.nnsookwon.workout_log.AddNewExercise"
+            android:screenOrientation="nosensor" >
             <intent-filter>
                 <action android:name="com.nnsookwon.ADD_NEW_EXERCISE" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="com.nnsookwon.workout_log.EditEntry" >
+        <activity
+            android:name="com.nnsookwon.workout_log.EditEntry"
+            android:screenOrientation="nosensor" >
             <intent-filter>
                 <action android:name="com.nnsookwon.EDIT_ENTRY" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="com.nnsookwon.workout_log.ViewExerciseHistory" >
+        <activity
+            android:name="com.nnsookwon.workout_log.ViewExerciseHistory"
+            android:screenOrientation="nosensor" >
             <intent-filter>
                 <action android:name="com.nnsookwon.VIEW_EXERCISE_HISTORY" />
 

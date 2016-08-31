@@ -35,10 +35,6 @@ public class SwipeGestureListener implements View.OnTouchListener {
         private static final int MIN_DISTANCE = 100;
         private static final int MIN_VELOCITY = 100;
 
-        @Override
-        public boolean onDown(MotionEvent e) {
-            return true;
-        }
 
         @Override
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {

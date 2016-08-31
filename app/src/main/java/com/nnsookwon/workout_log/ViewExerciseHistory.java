@@ -13,17 +13,18 @@ import java.util.ArrayList;
 public class ViewExerciseHistory extends AppCompatActivity {
 
     private ExerciseLogDB exerciseLog;
-    TextView header;
-    LinearLayout content;
-    String exerciseName;
+    private LinearLayout content;
+    private String exerciseName;
+    private int index, increment;
 
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_exercise_history);
-//        header = (TextView) findViewById(R.id.exercise_history_header);
         content = (LinearLayout) findViewById(R.id.exercise_history_content);
         exerciseName = "";
+        index = 0;
+        increment = 10;
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
@@ -34,13 +35,13 @@ public class ViewExerciseHistory extends AppCompatActivity {
 
         getSupportActionBar().setTitle(exerciseName);
         exerciseLog = new ExerciseLogDB(ViewExerciseHistory.this);
-        fillExerciseHistory();
+
+        fillExerciseHistory(index, index+10);
     }
 
-    public void fillExerciseHistory(){
+    public void fillExerciseHistory(int start, int end){
         exerciseLog.open();
-        ArrayList<Exercise> exercises = exerciseLog.getExerciseHistory(exerciseName);
-        String result = "";
+        ArrayList<Exercise> exercises = exerciseLog.getExerciseHistory(exerciseName,start,end);
 
         TextView tv_date;
         TextView tv_sets;

@@ -108,16 +108,17 @@ public class ExerciseLogDB {
         return exercises;
     }
 
-    public ArrayList<Exercise> getExerciseHistory(String exerciseName) {
-        //returns ArrayList a particular exercise, starting with the most recent
-        //to see progress of performance in gym
+    public ArrayList<Exercise> getExerciseHistory(String exerciseName, int start, int end) {
+        //returns ArrayList of entries of particular exercise in reverse chronological order,
+        //range from position start to end.
+        //used to see progress in gym
 
         ArrayList<Exercise> exercises = new ArrayList<Exercise>();
 
         Cursor c = ourDataBase.rawQuery("SELECT * FROM " +
                 DbHelper.DATABASE_TABLE_LOG_ENTRIES +
                 " WHERE " + DbHelper.KEY_EXERCISE + " = \"" + exerciseName + "\"" +
-                " ORDER BY date(" + DbHelper.KEY_DATE_SORT + ") DESC", null);
+                " ORDER BY date(" + DbHelper.KEY_DATE_SORT + ") DESC LIMIT " + (end-start) + " OFFSET " + start, null);
 
         int iDate = c.getColumnIndex(DbHelper.KEY_DATE);
         int iDateSort = c.getColumnIndex(DbHelper.KEY_DATE_SORT);

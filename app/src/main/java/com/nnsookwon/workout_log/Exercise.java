@@ -107,14 +107,20 @@ public class Exercise {
         String result = "";
         int i = 1;
         for (double[] set : sets) {
-            result += set[0] + "\tlb.\t\tX\t\t" + (int) set[1] + "\t\t";
+            result += set[0] + "  lb.  X   ";
+            if (set[1]<10)
+                result+="  ";
+            //extra space so single and double digits line up
+            result+= (int) set[1] + "   ";
+
             if (set[1] > 1)
                 result += "reps";
             else
                 result += "rep  ";
-            //extra space to light up with "reps"
+            //extra space to line up with "reps"
             if (i++ < sets.size())
                 result += "\n";
+
         }
         return result;
     }
