@@ -277,25 +277,16 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:spinnerItemStyle">@style/Option_Style</item>
     </style>
     <style name="B_Add">
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@android:color/black</item>
-    </style>
-    <style name="B_Add_To_Entry">
-        <item name="android:src">@drawable/plus</item>
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:onClick">goToAddToEntry</item>
-        <item name="android:padding">12dp</item>
-        <item name="android:layout_marginBottom">16dp</item>
-    </style>
-    <style name="B_EditEntry">
-        <item name="android:src">@drawable/edit</item>
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:onClick">goToEditEntry</item>
-        <item name="android:padding">12dp</item>
+        <item name="android:background">#f0f0f0</item>
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:paddingRight">8dp</item>
     </style>
     <style name="B_Menu_Options">
         <item name="android:src">@drawable/menu_options</item>
@@ -1289,7 +1280,7 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
     <style name="Header_Date">
-        <item name="android:textSize">32sp</item>
+        <item name="android:textSize">28sp</item>
         <item name="android:textColor">#000080</item>
     </style>
     <style name="Log_Entry">
@@ -1314,7 +1305,11 @@
         <item name="android:gravity">right</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <!--<item name="android:paddingTop">8dp</item>-->
+    </style>
+    <style name="Option_Style">
+        <item name="android:textSize">20sp</item>
+        <item name="android:paddingLeft">16sp</item>
+        <item name="android:textColor">#000080</item>
     </style>
     <style name="Plain_Text">
         <item name="android:textSize">20sp</item>
@@ -1666,4 +1661,9 @@
     <style name="Widget.AppCompat.TextView.SpinnerItem" parent="Base.Widget.AppCompat.TextView.SpinnerItem"/>
     <style name="Widget.AppCompat.Toolbar" parent="Base.Widget.AppCompat.Toolbar"/>
     <style name="Widget.AppCompat.Toolbar.Button.Navigation" parent="Base.Widget.AppCompat.Toolbar.Button.Navigation"/>
+    <style name="b_plus_minus">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@android:color/black</item>
+
+    </style>
 </resources>

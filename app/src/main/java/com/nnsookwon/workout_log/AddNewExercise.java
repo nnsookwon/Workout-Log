@@ -34,6 +34,10 @@ public class AddNewExercise extends AppCompatActivity implements AdapterView.OnI
     private ExerciseLogDB exerciseLogDB;
     private ExercisesDB exercisesDB;
 
+    private boolean hasChangedWeight, hasChangedReps;
+    private double weight, incrementWeight;
+    private int reps, incrementRep;
+
     private Spinner sp_categories;
     private Spinner sp_exercises;
     ArrayList<String> categories;
@@ -66,17 +70,42 @@ public class AddNewExercise extends AppCompatActivity implements AdapterView.OnI
         exercisesDB.open();
         initSpinners();
 
+        hasChangedWeight = hasChangedReps = false;
+        weight = reps = 0;
+
+
+        //increase/decrease by this much each time plus/minus button pressed
+        incrementWeight = 5;
+        incrementRep = 1;
+
         et_date = (EditText) findViewById(R.id.et_date);
         et_weight = (EditText) findViewById(R.id.et_weight);
         et_reps = (EditText) findViewById(R.id.et_reps);
 
+        initETfields();
         initFields();
     }
 
+    public void initETfields(){
+        et_weight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                hasChangedWeight=true;
+            }
+        });
+
+        et_reps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                hasChangedReps=true;
+            }
+        });
+    }
     public void initSpinners() {
         categories = exercisesDB.getCategories();
         adapterCategories = new ArrayAdapter<String>(AddNewExercise.this,
-                android.R.layout.simple_spinner_dropdown_item, categories);
+                android.R.layout.simple_spinner_item, categories);
+        adapterCategories.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp_categories = (Spinner) findViewById(R.id.sp_categories);
 
         if (sp_categories != null) {
@@ -94,7 +123,8 @@ public class AddNewExercise extends AppCompatActivity implements AdapterView.OnI
     public void updateExerciseSpinner() {
         exercises = exercisesDB.getExercises(nCategory);
         adapterExercises = new ArrayAdapter<String>(AddNewExercise.this,
-                android.R.layout.simple_spinner_dropdown_item, exercises);
+                android.R.layout.simple_spinner_item, exercises);
+        adapterExercises.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp_exercises.setAdapter(adapterExercises);
     }
 
@@ -106,6 +136,7 @@ public class AddNewExercise extends AppCompatActivity implements AdapterView.OnI
                     pos = sp_categories.getSelectedItemPosition();
                     nCategory = categories.get(pos);
                     updateExerciseSpinner();
+                    sp_exercises.performClick();
                     break;
                 case R.id.sp_exercises:
                     pos = sp_exercises.getSelectedItemPosition();
@@ -117,6 +148,7 @@ public class AddNewExercise extends AppCompatActivity implements AdapterView.OnI
             }
         }
     }
+
     public void onNothingSelected(AdapterView<?> av) {
 
     }
@@ -185,9 +217,9 @@ public class AddNewExercise extends AppCompatActivity implements AdapterView.OnI
             if (bundle.containsKey("exerciseName")) {
                 nExerciseName = bundle.getString("exerciseName");
                 int pos = exercises.indexOf(nExerciseName);
-                sp_exercises.setSelection(pos,true);
-                Log.e("TAG",""+sp_exercises.getSelectedItem().toString().equals(nExerciseName));
-                Log.e("TAG",""+sp_exercises.getSelectedItem().toString());
+                sp_exercises.setSelection(pos, true);
+                Log.e("TAG", "" + sp_exercises.getSelectedItem().toString().equals(nExerciseName));
+                Log.e("TAG", "" + sp_exercises.getSelectedItem().toString());
 
             }
 
@@ -249,6 +281,54 @@ public class AddNewExercise extends AppCompatActivity implements AdapterView.OnI
 
     }
 
+    public void incrementWeight(View v){
+        if (hasChangedWeight){
+            try {
+                weight = Double.parseDouble(et_weight.getText().toString());
+            }catch (NumberFormatException e){
+
+            }
+        }
+        weight += incrementWeight;
+        et_weight.setText(""+weight);
+    }
+
+    public void decrementWeight(View v){
+        if (hasChangedWeight){
+            try {
+                weight = Double.parseDouble(et_weight.getText().toString());
+            }catch (NumberFormatException e){
+
+            }
+        }
+        weight -= incrementWeight;
+        et_weight.setText(""+weight);
+    }
+
+    public void incrementRep(View v){
+        if (hasChangedReps){
+            try {
+                reps = Integer.parseInt(et_weight.getText().toString());
+            }catch (NumberFormatException e){
+
+            }
+        }
+        reps += incrementRep;
+        et_reps.setText(""+reps);
+    }
+
+    public void decrementRep(View v){
+        if (hasChangedReps){
+            try {
+                reps = Integer.parseInt(et_weight.getText().toString());
+            }catch (NumberFormatException e){
+
+            }
+        }
+        reps -= incrementRep;
+        et_reps.setText(""+reps);
+    }
+
     public void exitAddNewExercise(View v) {
         //return back to MyApplication
         exercisesDB.close();
@@ -262,7 +342,7 @@ public class AddNewExercise extends AppCompatActivity implements AdapterView.OnI
         userIsInteracting = true;
     }
 
-    public void onBackPressed(){
+    public void onBackPressed() {
         exercisesDB.close();
         super.onBackPressed();
     }

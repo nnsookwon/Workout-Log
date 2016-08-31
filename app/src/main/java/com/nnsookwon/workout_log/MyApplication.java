@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.PopupMenu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -21,20 +20,17 @@ import java.util.Locale;
 
 public class MyApplication extends AppCompatActivity {
 
-    private TextView log_date, log_exercise;
-
-
-    private Button addNewExercise;
-
+    private TextView log_date;
     private ExerciseLogDB exerciseLogDB;
-    Calendar calendar;
-    LinearLayout logEntrySpace;
+    private Calendar calendar;
+    private LinearLayout logEntrySpace;
+    private String dateToday,dateYesterday,dateTomorrow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.my_application);
-
+        refreshDateStrings();
         logEntrySpace = (LinearLayout) findViewById(R.id.log_entries);
         calendar = Calendar.getInstance();
         log_date = (TextView) findViewById(R.id.date);
@@ -54,12 +50,22 @@ public class MyApplication extends AppCompatActivity {
                 forwardDate(null);
             }
         });
+
     }
 
     public String getFormattedDate(Calendar cal) {
 
         return new SimpleDateFormat("MMMM dd, yyyy", Locale.US).format(cal.getTime());
 
+    }
+
+    public void refreshDateStrings(){
+        Calendar cal = Calendar.getInstance();
+        dateToday = getFormattedDate(cal);
+        cal.add(Calendar.DATE, 1);
+        dateTomorrow = getFormattedDate(cal);
+        cal.add(Calendar.DATE, -2);
+        dateYesterday = getFormattedDate(cal);
     }
 
     public void forwardDate(View v) {
@@ -105,7 +111,15 @@ public class MyApplication extends AppCompatActivity {
         exerciseLogDB.open();
         ArrayList<Exercise> exercises = exerciseLogDB.getLogEntries(date);
         exerciseLogDB.close();
-        tv_date.setText(date);
+
+        if (date.equals(dateToday))
+            tv_date.setText("Today");
+        else if (date.equals(dateTomorrow))
+            tv_date.setText("Tomorrow");
+        else if (date.equals(dateYesterday))
+            tv_date.setText("Yesterday");
+        else
+            tv_date.setText(date);
         int id_exercise = 1;
         int id_options = 100001;
 
@@ -214,7 +228,7 @@ public class MyApplication extends AppCompatActivity {
                     case R.id.b_addMore:
                     case R.id.b_edit:
                     case R.id.b_view_history:
-                        menuItemClicked(view,item);
+                        menuItemClicked(view, item);
                         return true;
                     default:
                         return false;
@@ -224,6 +238,12 @@ public class MyApplication extends AppCompatActivity {
 
         popupMenu.show();
 
+    }
+
+    public void onResume(){
+        //updates the date Strings in case user comes back the next day
+        super.onResume();
+        refreshDateStrings();
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
