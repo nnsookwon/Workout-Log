@@ -26,7 +26,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.nnsookwon.workout_log.MyApplication"
+            android:name="com.nnsookwon.workout_log.MainActivity"
             android:screenOrientation="nosensor" >
             <intent-filter>
                 <action android:name="com.nnsookwon.APPLICATION" />

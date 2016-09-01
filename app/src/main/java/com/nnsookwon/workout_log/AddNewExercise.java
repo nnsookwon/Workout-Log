@@ -380,7 +380,7 @@ public class AddNewExercise extends AppCompatActivity implements AdapterView.OnI
     }
 
     public void exitAddNewExercise(View v) {
-        //return back to MyApplication
+        //return back to MainActivity
         exerciseLogDB.close();
         exercisesDB.close();
         Intent returnIntent = new Intent();

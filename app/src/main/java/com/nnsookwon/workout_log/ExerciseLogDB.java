@@ -80,6 +80,32 @@ public class ExerciseLogDB {
         }
     }
 
+    public String getNewestEntryDate(){
+        //returns the formatted date String of the newest entry, blank String if DB has no entries.
+        Cursor c = ourDataBase.rawQuery("SELECT * FROM " + DbHelper.DATABASE_TABLE_LOG_ENTRIES +
+                " ORDER BY date(" + DbHelper.KEY_DATE_SORT + ") DESC LIMIT 1", null);
+
+        int iDate = c.getColumnIndex(DbHelper.KEY_DATE);
+        if (c.getCount()>0){
+            c.moveToFirst();
+            return c.getString(iDate);
+        }
+        return "";
+    }
+
+    public String getOldestEntryDate(){
+        //returns the formatted date String of the oldest entry, blank String if DB has no entries.
+        Cursor c = ourDataBase.rawQuery("SELECT * FROM " + DbHelper.DATABASE_TABLE_LOG_ENTRIES +
+                " ORDER BY date(" + DbHelper.KEY_DATE_SORT + ") LIMIT 1", null);
+
+        int iDate = c.getColumnIndex(DbHelper.KEY_DATE);
+        if (c.getCount()>0){
+            c.moveToFirst();
+            return c.getString(iDate);
+        }
+        return "";
+    }
+
     public ArrayList<Exercise> getLogEntries(String date) {
         //retrieves from database log entries on specified date
 

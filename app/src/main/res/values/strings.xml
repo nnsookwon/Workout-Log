@@ -8,4 +8,6 @@
     <string name="category">Category:</string>
     <string name="exercise">Exercise:</string>
     <string name="motivator">Beat your last workout!</string>
+    <string name="settings">Settings</string>
+    <string name="skip_empty_entries">Skip empty entries</string>
 </resources>

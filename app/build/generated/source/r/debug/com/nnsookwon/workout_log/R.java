@@ -1686,11 +1686,13 @@ containing a value of this type.
         public static final int adjust_width=0x7f0c001d;
         public static final int alertTitle=0x7f0c0032;
         public static final int always=0x7f0c001e;
-        public static final int b_addMore=0x7f0c006c;
-        public static final int b_edit=0x7f0c006d;
+        public static final int b_addMore=0x7f0c006e;
+        public static final int b_edit=0x7f0c006f;
         public static final int b_leftArrow=0x7f0c0059;
         public static final int b_rightArrow=0x7f0c005b;
-        public static final int b_view_history=0x7f0c006e;
+        public static final int b_settings=0x7f0c006c;
+        public static final int b_skipDates=0x7f0c006d;
+        public static final int b_view_history=0x7f0c0070;
         public static final int beginning=0x7f0c0019;
         public static final int buttonPanel=0x7f0c002d;
         public static final int cancel_action=0x7f0c005f;
@@ -1835,7 +1837,8 @@ containing a value of this type.
         public static final int view_exercise_history=0x7f04002d;
     }
     public static final class menu {
-        public static final int menu_options=0x7f0d0000;
+        public static final int main_activity_menu=0x7f0d0000;
+        public static final int menu_options=0x7f0d0001;
     }
     public static final class mipmap {
         public static final int ic_launcher=0x7f030000;
@@ -1900,8 +1903,10 @@ containing a value of this type.
         public static final int common_open_on_phone=0x7f060030;
         public static final int exercise=0x7f06003a;
         public static final int motivator=0x7f06003b;
+        public static final int settings=0x7f06003c;
+        public static final int skip_empty_entries=0x7f06003d;
         public static final int status_bar_notification_info_overflow=0x7f060031;
-        public static final int weight_hint=0x7f06003c;
+        public static final int weight_hint=0x7f06003e;
     }
     public static final class style {
         public static final int AlertDialog_AppCompat=0x7f090086;
