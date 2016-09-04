@@ -4,7 +4,7 @@
     api-level="23"
     density="420dpi"
     format="7"
-    timestamp="8936891722426"
+    timestamp="209782818532930"
     token="-4891606476800178743" >
 
     <task
@@ -21,18 +21,25 @@
         duration="0" />
 
     <artifact
-        location="C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_3\classes.dex"
-        type="DEX" />
+        location="C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\intermediates\res\resources-debug.ap_"
+        type="RESOURCES" />
 
-    <build timestamp="1484486116635" >
+    <build timestamp="205561024027164" >
         <artifact
             location="C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\outputs\apk\app-debug.apk"
             type="MAIN" />
     </build>
-    <build timestamp="8936891722426" >
+    <build
+        timestamp="209574697585105"
+        verifier="METHOD_ADDED" >
         <artifact
             location="C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_3\classes.dex"
             type="DEX" />
+    </build>
+    <build timestamp="209782818532930" >
+        <artifact
+            location="C:\Users\nnsoo\OneDrive\Documents\AndroidStudioProjects\git\WorkoutLog\app\build\intermediates\res\resources-debug.ap_"
+            type="RESOURCES" />
     </build>
 
 </instant-run>

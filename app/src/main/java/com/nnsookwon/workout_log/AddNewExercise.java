@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -47,14 +46,11 @@ public class AddNewExercise extends AppCompatActivity implements AdapterView.OnI
 
     private Spinner sp_categories;
     private Spinner sp_exercises;
-    ArrayList<String> categories;
-    ArrayList<String> exercises;
+    private ArrayList<String> categories;
+    private ArrayList<String> exercises;
 
-    ArrayAdapter<String> adapterCategories;
-    ArrayAdapter<String> adapterExercises;
-    SharedPreferences savedExercises;
-    public static String filename = "SavedExercises";
-    private static final String KEY_EXERCISES = "key_exercises";
+    private ArrayAdapter<String> adapterCategories;
+    private ArrayAdapter<String> adapterExercises;
     private boolean userIsInteracting;
 
     Calendar calendar;
@@ -86,9 +82,9 @@ public class AddNewExercise extends AppCompatActivity implements AdapterView.OnI
         incrementWeight = 5;
         incrementRep = 1;
 
-        et_date = (EditText) findViewById(R.id.et_date);
-        et_weight = (EditText) findViewById(R.id.et_weight);
-        et_reps = (EditText) findViewById(R.id.et_reps);
+        et_date = (EditText) findViewById(R.id.add_new_exercise_et_date);
+        et_weight = (EditText) findViewById(R.id.add_new_exercise__et_weight);
+        et_reps = (EditText) findViewById(R.id.add_new_exercise_et_reps);
 
         initETfields();
         initFields();
@@ -117,14 +113,14 @@ public class AddNewExercise extends AppCompatActivity implements AdapterView.OnI
         adapterCategories = new ArrayAdapter<String>(AddNewExercise.this,
                 android.R.layout.simple_spinner_item, categories);
         adapterCategories.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        sp_categories = (Spinner) findViewById(R.id.sp_categories);
+        sp_categories = (Spinner) findViewById(R.id.add_new_exercise_sp_categories);
 
         if (sp_categories != null) {
             sp_categories.setOnItemSelectedListener(AddNewExercise.this);
             sp_categories.setAdapter(adapterCategories);
         }
 
-        sp_exercises = (Spinner) findViewById(R.id.sp_exercises);
+        sp_exercises = (Spinner) findViewById(R.id.add_new_exercise_sp_exercises);
         if (sp_exercises != null) {
             sp_exercises.setOnItemSelectedListener(AddNewExercise.this);
             updateExerciseSpinner();
@@ -143,13 +139,13 @@ public class AddNewExercise extends AppCompatActivity implements AdapterView.OnI
         if (userIsInteracting) {
             int pos;
             switch (av.getId()) {
-                case R.id.sp_categories:
+                case R.id.add_new_exercise_sp_categories:
                     pos = sp_categories.getSelectedItemPosition();
                     category = categories.get(pos);
                     updateExerciseSpinner();
                     sp_exercises.performClick();
                     break;
-                case R.id.sp_exercises:
+                case R.id.add_new_exercise_sp_exercises:
                     pos = sp_exercises.getSelectedItemPosition();
                     if (pos == 1)
                         addOption();

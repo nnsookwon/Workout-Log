@@ -28,7 +28,7 @@ public class EditEntry extends AppCompatActivity {
         setContentView(R.layout.edit_entry);
         initExercise();
         exerciseLogDB = new ExerciseLogDB(getApplicationContext());
-        table = (TableLayout) findViewById(R.id.table);
+        table = (TableLayout) findViewById(R.id.edit_entry_table);
         if (table != null)
             table.setStretchAllColumns(true);
 //        header = (TextView) findViewById(R.id.exercise_history_header);

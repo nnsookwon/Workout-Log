@@ -34,18 +34,18 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.my_application);
+        setContentView(R.layout.main_activity);
         exerciseLogDB = new ExerciseLogDB(getApplicationContext());
         simpleDateFormat = new SimpleDateFormat("MMMM dd, yyyy", Locale.US);
         refreshDateStrings();
-        logEntrySpace = (LinearLayout) findViewById(R.id.log_entries);
+        logEntrySpace = (LinearLayout) findViewById(R.id.main_activity_log_entries);
         calendar = Calendar.getInstance();
-        log_date = (TextView) findViewById(R.id.date);
+        log_date = (TextView) findViewById(R.id.main_activity_date);
 
         log_date.setText(getShortDate(calendar));
 
         fillLogEntry(getFormattedDate(calendar), log_date);
-        ScrollView sv = (ScrollView) findViewById(R.id.scroll);
+        ScrollView sv = (ScrollView) findViewById(R.id.main_activity_scroll);
         sv.setOnTouchListener(new SwipeGestureListener(MainActivity.this) {
             public void onSwipeLeft() {
                 backDate(null);
@@ -66,8 +66,9 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         super.onOptionsItemSelected(item);
         switch (item.getItemId()) {
-            case R.id.b_settings:
-
+            case R.id.b_manage_exercises:
+                Intent intent = new Intent(MainActivity.this, ManageExercises.class);
+                startActivity(intent);
                 break;
 
             case R.id.b_skipDates:

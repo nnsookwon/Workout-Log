@@ -114,6 +114,7 @@ public class ExercisesDB {
         return false;
     }
 
+
     public boolean deleteEntry(String exerciseName) {
         //returns false if exerciseName does not exist in DB
 

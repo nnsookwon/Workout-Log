@@ -39,14 +39,14 @@
 
 
         <LinearLayout
-            android:id="@+id/edit_fields"
+            android:id="@+id/edit_entry_edit_fields"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
 
             <TableLayout
-                android:id="@+id/table"
+                android:id="@+id/edit_entry_table"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal">

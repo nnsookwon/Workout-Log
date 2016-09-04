@@ -22,7 +22,7 @@
                 android:text="Date:" />
 
             <EditText
-                android:id="@+id/et_date"
+                android:id="@+id/add_new_exercise_et_date"
                 style="@style/Option_Style"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
                 android:text="Category:" />
 
             <Spinner
-                android:id="@+id/sp_categories"
+                android:id="@+id/add_new_exercise_sp_categories"
                 style="@style/Base.Widget.AppCompat.Spinner.Underlined"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -68,7 +68,7 @@
                 android:text="Exercise:" />
 
             <Spinner
-                android:id="@+id/sp_exercises"
+                android:id="@+id/add_new_exercise_sp_exercises"
                 style="@style/Base.Widget.AppCompat.Spinner.Underlined"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -102,7 +102,7 @@
                 android:layout_gravity="center_vertical"/>
 
             <EditText
-                android:id="@+id/et_weight"
+                android:id="@+id/add_new_exercise__et_weight"
                 style="@style/Option_Style"
                 android:textSize="24sp"
                 android:layout_width="100dp"
@@ -151,7 +151,7 @@
                 android:layout_gravity="center_vertical" />
 
             <EditText
-                android:id="@+id/et_reps"
+                android:id="@+id/add_new_exercise_et_reps"
                 style="@style/Option_Style"
                 android:textSize="24sp"
                 android:layout_width="100dp"
@@ -177,6 +177,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
+                android:layout_marginTop="8dp"
                 android:onClick="addToLog"
                 android:text="Add" />
 

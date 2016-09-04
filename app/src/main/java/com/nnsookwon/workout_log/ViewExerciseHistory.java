@@ -21,7 +21,7 @@ public class ViewExerciseHistory extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_exercise_history);
-        content = (LinearLayout) findViewById(R.id.exercise_history_content);
+        content = (LinearLayout) findViewById(R.id.edit_entry_exercise_history_content);
         exerciseName = "";
         index = 0;
         increment = 10;
