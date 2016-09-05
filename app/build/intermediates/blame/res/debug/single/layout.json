@@ -1,11 +1,11 @@
 [
     {
-        "merged": "C:\\Users\\nnsoo\\OneDrive\\Documents\\AndroidStudioProjects\\git\\WorkoutLog\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_bar_title_item.xml",
-        "source": "C:\\Users\\nnsoo\\OneDrive\\Documents\\AndroidStudioProjects\\git\\WorkoutLog\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\layout\\abc_action_bar_title_item.xml"
-    },
-    {
         "merged": "C:\\Users\\nnsoo\\OneDrive\\Documents\\AndroidStudioProjects\\git\\WorkoutLog\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_simple_overlay_action_mode.xml",
         "source": "C:\\Users\\nnsoo\\OneDrive\\Documents\\AndroidStudioProjects\\git\\WorkoutLog\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\layout\\abc_screen_simple_overlay_action_mode.xml"
+    },
+    {
+        "merged": "C:\\Users\\nnsoo\\OneDrive\\Documents\\AndroidStudioProjects\\git\\WorkoutLog\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_bar_title_item.xml",
+        "source": "C:\\Users\\nnsoo\\OneDrive\\Documents\\AndroidStudioProjects\\git\\WorkoutLog\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\layout\\abc_action_bar_title_item.xml"
     },
     {
         "merged": "C:\\Users\\nnsoo\\OneDrive\\Documents\\AndroidStudioProjects\\git\\WorkoutLog\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_popup_menu_item_layout.xml",
@@ -16,12 +16,12 @@
         "source": "C:\\Users\\nnsoo\\OneDrive\\Documents\\AndroidStudioProjects\\git\\WorkoutLog\\app\\src\\main\\res\\layout\\add_new_exercise.xml"
     },
     {
-        "merged": "C:\\Users\\nnsoo\\OneDrive\\Documents\\AndroidStudioProjects\\git\\WorkoutLog\\app\\build\\intermediates\\res\\merged\\debug\\layout\\main_activity.xml",
-        "source": "C:\\Users\\nnsoo\\OneDrive\\Documents\\AndroidStudioProjects\\git\\WorkoutLog\\app\\src\\main\\res\\layout\\main_activity.xml"
-    },
-    {
         "merged": "C:\\Users\\nnsoo\\OneDrive\\Documents\\AndroidStudioProjects\\git\\WorkoutLog\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_part_time.xml",
         "source": "C:\\Users\\nnsoo\\OneDrive\\Documents\\AndroidStudioProjects\\git\\WorkoutLog\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\layout\\notification_template_part_time.xml"
+    },
+    {
+        "merged": "C:\\Users\\nnsoo\\OneDrive\\Documents\\AndroidStudioProjects\\git\\WorkoutLog\\app\\build\\intermediates\\res\\merged\\debug\\layout\\main_activity.xml",
+        "source": "C:\\Users\\nnsoo\\OneDrive\\Documents\\AndroidStudioProjects\\git\\WorkoutLog\\app\\src\\main\\res\\layout\\main_activity.xml"
     },
     {
         "merged": "C:\\Users\\nnsoo\\OneDrive\\Documents\\AndroidStudioProjects\\git\\WorkoutLog\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_search_view.xml",
@@ -96,12 +96,12 @@
         "source": "C:\\Users\\nnsoo\\OneDrive\\Documents\\AndroidStudioProjects\\git\\WorkoutLog\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\layout\\abc_action_menu_layout.xml"
     },
     {
-        "merged": "C:\\Users\\nnsoo\\OneDrive\\Documents\\AndroidStudioProjects\\git\\WorkoutLog\\app\\build\\intermediates\\res\\merged\\debug\\layout\\view_exercise_history.xml",
-        "source": "C:\\Users\\nnsoo\\OneDrive\\Documents\\AndroidStudioProjects\\git\\WorkoutLog\\app\\src\\main\\res\\layout\\view_exercise_history.xml"
-    },
-    {
         "merged": "C:\\Users\\nnsoo\\OneDrive\\Documents\\AndroidStudioProjects\\git\\WorkoutLog\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_layout.xml",
         "source": "C:\\Users\\nnsoo\\OneDrive\\Documents\\AndroidStudioProjects\\git\\WorkoutLog\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\layout\\abc_list_menu_item_layout.xml"
+    },
+    {
+        "merged": "C:\\Users\\nnsoo\\OneDrive\\Documents\\AndroidStudioProjects\\git\\WorkoutLog\\app\\build\\intermediates\\res\\merged\\debug\\layout\\view_exercise_history.xml",
+        "source": "C:\\Users\\nnsoo\\OneDrive\\Documents\\AndroidStudioProjects\\git\\WorkoutLog\\app\\src\\main\\res\\layout\\view_exercise_history.xml"
     },
     {
         "merged": "C:\\Users\\nnsoo\\OneDrive\\Documents\\AndroidStudioProjects\\git\\WorkoutLog\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_expanded_menu_layout.xml",
@@ -168,12 +168,12 @@
         "source": "C:\\Users\\nnsoo\\OneDrive\\Documents\\AndroidStudioProjects\\git\\WorkoutLog\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\layout\\notification_template_lines.xml"
     },
     {
-        "merged": "C:\\Users\\nnsoo\\OneDrive\\Documents\\AndroidStudioProjects\\git\\WorkoutLog\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_media.xml",
-        "source": "C:\\Users\\nnsoo\\OneDrive\\Documents\\AndroidStudioProjects\\git\\WorkoutLog\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\layout\\notification_template_media.xml"
-    },
-    {
         "merged": "C:\\Users\\nnsoo\\OneDrive\\Documents\\AndroidStudioProjects\\git\\WorkoutLog\\app\\build\\intermediates\\res\\merged\\debug\\layout\\log_entry_exercise_name_template.xml",
         "source": "C:\\Users\\nnsoo\\OneDrive\\Documents\\AndroidStudioProjects\\git\\WorkoutLog\\app\\src\\main\\res\\layout\\log_entry_exercise_name_template.xml"
+    },
+    {
+        "merged": "C:\\Users\\nnsoo\\OneDrive\\Documents\\AndroidStudioProjects\\git\\WorkoutLog\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_media.xml",
+        "source": "C:\\Users\\nnsoo\\OneDrive\\Documents\\AndroidStudioProjects\\git\\WorkoutLog\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\23.4.0\\res\\layout\\notification_template_media.xml"
     },
     {
         "merged": "C:\\Users\\nnsoo\\OneDrive\\Documents\\AndroidStudioProjects\\git\\WorkoutLog\\app\\build\\intermediates\\res\\merged\\debug\\layout\\log_entry_template.xml",

@@ -14,6 +14,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -184,7 +185,7 @@ public class MainActivity extends AppCompatActivity {
         else
             tv_date.setText(getShortDate(calendar));
         int id_exercise = 1;
-        int id_options = 100001;
+        int id_options = 2;
 
         TextView tv_exerciseSets;
         TextView tv_exerciseName;
@@ -194,8 +195,15 @@ public class MainActivity extends AppCompatActivity {
 
         for (Exercise exercise : exercises) {
 
+            //if int overflows
+            if (id_exercise == Integer.MAX_VALUE || id_options == Integer.MAX_VALUE) {
+                Toast.makeText(MainActivity.this, "Unable to load all exercises", Toast.LENGTH_SHORT).show();
+                break;
+            }
+
             LogEntry entry = (LogEntry) getLayoutInflater().inflate(R.layout.log_entry_template, null);
-            entry.setId(id_exercise++);
+            entry.setId(id_exercise);
+            id_exercise += 2;
             entry.setExercise(exercise);
 
             tv_exerciseSets = (TextView) getLayoutInflater().inflate(R.layout.log_entry_exercise_sets_template, null);
@@ -214,7 +222,8 @@ public class MainActivity extends AppCompatActivity {
             name_sets.addView(tv_exerciseSets);
 
             b_menu_options = (ImageButton) getLayoutInflater().inflate(R.layout.menu_options_template, null);
-            b_menu_options.setId(id_options++);
+            b_menu_options.setId(id_options);
+            id_options += 2;
 
             llParams = new LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -248,7 +257,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void menuItemClicked(View v, MenuItem item) {
-        int id_exercise = (v.getId() - 100000);
+        int id_exercise = (v.getId() -1);
         LogEntry entry = (LogEntry) findViewById(id_exercise);
         Bundle bundle = new Bundle();
         bundle.putInt("day", calendar.get(Calendar.DAY_OF_MONTH));

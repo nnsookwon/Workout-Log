@@ -63,16 +63,24 @@ public class EditEntry extends AppCompatActivity {
                 1.0f);
 
         int id_weight = 1;
-        int id_reps = 10001;
+        int id_reps = 2;
 
         for (double[] set : exercise.getSetList()) {
+
+            //if int overflows
+            if (id_weight == Integer.MAX_VALUE || id_reps == Integer.MAX_VALUE) {
+                Toast.makeText(EditEntry.this, "Unable to load all sets", Toast.LENGTH_SHORT).show();
+                break;
+            }
+
             TableRow row = new TableRow(EditEntry.this);
 //
             ContextThemeWrapper themer = new ContextThemeWrapper(EditEntry.this, R.style.Edit_Entry_Weight);
             EditText et_weight = new EditText(themer);
             et_weight.setLayoutParams(new TableRow.LayoutParams(
                     TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
-            et_weight.setId(id_weight++);
+            et_weight.setId(id_weight);
+            id_weight += 2;
             et_weight.setText(set[0] + "");
 
             themer.setTheme(R.style.Edit_Entry_Mid_Col);
@@ -86,7 +94,8 @@ public class EditEntry extends AppCompatActivity {
             EditText et_reps = new EditText(themer);
             et_reps.setLayoutParams(new TableRow.LayoutParams(
                     TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
-            et_reps.setId(id_reps++);
+            et_reps.setId(id_reps);
+            id_reps += 2;
             et_reps.setText((int) set[1] + "");
 
             row.addView(et_weight, cellLp);
@@ -112,8 +121,8 @@ public class EditEntry extends AppCompatActivity {
         boolean error = false;
 
         for (int i = 1; i <= exercise.getSetList().size(); i++) {
-            weight = ((EditText) findViewById(i)).getText().toString();
-            reps = ((EditText) findViewById(i + 10000)).getText().toString();
+            weight = ((EditText) findViewById(i * 2 - 1)).getText().toString();
+            reps = ((EditText) findViewById(i * 2)).getText().toString();
             if (weight.isEmpty() && reps.isEmpty()) {
                 //if weight and reps 0, delete set from entry
                 exercise.removeSet(i - 1);
